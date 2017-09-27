@@ -7,16 +7,23 @@ namespace NodeEditorFramework
 {
 	public abstract class Node : ScriptableObject
 	{
+		[HideInInspector]
 		public Rect rect = new Rect ();
 		internal Vector2 contentOffset = Vector2.zero;
+
+		[HideInInspector]
 		[SerializeField]
 		public List<NodeKnob> nodeKnobs = new List<NodeKnob> ();
 
 		// Calculation graph
+		[HideInInspector]
 		[SerializeField]
 		public List<NodeInput> Inputs = new List<NodeInput>();
+
+		[HideInInspector]
 		[SerializeField]
 		public List<NodeOutput> Outputs = new List<NodeOutput>();
+
 		[HideInInspector]
 		[NonSerialized]
 		internal bool calculated = true;
