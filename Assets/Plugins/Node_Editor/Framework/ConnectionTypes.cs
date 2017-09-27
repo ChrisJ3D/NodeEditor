@@ -156,16 +156,16 @@ namespace NodeEditorFramework
 	{
 		public string Identifier { get { return "Float"; } }
 		public Type Type { get { return typeof(float); } }
-		public Color Color { get { return new Color(0.4f, 1f, 1f); } }
+		public Color Color { get { return new Color(0.368f, 1f, 1f); } }
 		public string InKnobTex { get { return "Textures/In_Knob.png"; } }
 		public string OutKnobTex { get { return "Textures/Out_Knob.png"; } }
 	}
 
 	public class IntType : IConnectionTypeDeclaration 
 	{
-		public string Identifier { get { return "Int"; } }
+		public string Identifier { get { return "int"; } }
 		public Type Type { get { return typeof(int); } }
-		public Color Color { get { return new Color(1f, 0.6f, 0.61f); } }
+		public Color Color { get { return new Color(1f, 0.666f, 0.619f); } }
 		public string InKnobTex { get { return "Textures/In_Knob.png"; } }
 		public string OutKnobTex { get { return "Textures/Out_Knob.png"; } }
 	}
@@ -174,7 +174,7 @@ namespace NodeEditorFramework
 	{
 		public string Identifier { get { return "Bool"; } }
 		public Type Type { get { return typeof(bool); } }
-		public Color Color { get { return Color.black; } }
+		public Color Color { get { return new Color(0.8f, 0.215f, 0.250f); } }
 		public string InKnobTex { get { return "Textures/In_Knob.png"; } }
 		public string OutKnobTex { get { return "Textures/Out_Knob.png"; } }
 	}
@@ -183,7 +183,16 @@ namespace NodeEditorFramework
 	{
 		public string Identifier { get { return "String"; } }
 		public Type Type { get { return typeof(string); } }
-		public Color Color { get { return Color.black; } }
+		public Color Color { get { return new Color(0.462f, 0.552f, 0.6f); } }
+		public string InKnobTex { get { return "Textures/In_Knob.png"; } }
+		public string OutKnobTex { get { return "Textures/Out_Knob.png"; } }
+	}
+
+	public class VectorType : IConnectionTypeDeclaration
+	{
+		public string Identifier { get { return "Vector"; } }
+		public Type Type { get { return typeof(string); } }
+		public Color Color { get { return new Color(0.215f, 0.592f, 0.8f); } }
 		public string InKnobTex { get { return "Textures/In_Knob.png"; } }
 		public string OutKnobTex { get { return "Textures/Out_Knob.png"; } }
 	}
