@@ -149,11 +149,41 @@ namespace NodeEditorFramework
 	}
 
 	// TODO: Node Editor: Built-In Connection Types
+
+	// Colors are found here
+	// https://color.adobe.com/create/color-wheel/?base=2&rule=Compound&selected=2&name=My%20Color%20Theme&mode=rgb&rgbvalues=0.21509204112797528,0.5936074865021713,0.8,0.4613190308459814,0.5510645848396204,0.6,0.36886505140996906,1,0.8822659943346634,1,0.6674557501715256,0.6188650514099691,0.8,0.21509204112797528,0.2518787686545819&swatchOrder=0,1,2,3,4
 	public class FloatType : IConnectionTypeDeclaration 
 	{
 		public string Identifier { get { return "Float"; } }
 		public Type Type { get { return typeof(float); } }
-		public Color Color { get { return Color.cyan; } }
+		public Color Color { get { return new Color(0.4f, 1f, 1f); } }
+		public string InKnobTex { get { return "Textures/In_Knob.png"; } }
+		public string OutKnobTex { get { return "Textures/Out_Knob.png"; } }
+	}
+
+	public class IntType : IConnectionTypeDeclaration 
+	{
+		public string Identifier { get { return "Int"; } }
+		public Type Type { get { return typeof(int); } }
+		public Color Color { get { return new Color(1f, 0.6f, 0.61f); } }
+		public string InKnobTex { get { return "Textures/In_Knob.png"; } }
+		public string OutKnobTex { get { return "Textures/Out_Knob.png"; } }
+	}
+
+	public class BoolType : IConnectionTypeDeclaration 
+	{
+		public string Identifier { get { return "Bool"; } }
+		public Type Type { get { return typeof(bool); } }
+		public Color Color { get { return Color.black; } }
+		public string InKnobTex { get { return "Textures/In_Knob.png"; } }
+		public string OutKnobTex { get { return "Textures/Out_Knob.png"; } }
+	}
+
+	public class StringType : IConnectionTypeDeclaration 
+	{
+		public string Identifier { get { return "String"; } }
+		public Type Type { get { return typeof(string); } }
+		public Color Color { get { return Color.black; } }
 		public string InKnobTex { get { return "Textures/In_Knob.png"; } }
 		public string OutKnobTex { get { return "Textures/Out_Knob.png"; } }
 	}
