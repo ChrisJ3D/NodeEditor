@@ -13,13 +13,87 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: 114248213048024806}
-  - {fileID: 114613374786983566}
-  - {fileID: 114066436323337796}
-  - {fileID: 114836934314334800}
+  - {fileID: 114641772236508288}
+  - {fileID: 114398821671788130}
+  - {fileID: 114580933410742614}
+  - {fileID: 114049597994649398}
+  - {fileID: 114524419077342766}
+  - {fileID: 114627502853299268}
+  - {fileID: 114457146503182662}
+  - {fileID: 114137245047579062}
+  - {fileID: 114930064554101896}
   - {fileID: 114501164202623468}
+  - {fileID: 114066436323337796}
+  - {fileID: 114996712677686410}
+  - {fileID: 114650014291687690}
+  - {fileID: 114466979835379828}
+  - {fileID: 114575881685044002}
+  - {fileID: 114311618202709458}
+  - {fileID: 114640476112060766}
+  - {fileID: 114434860879316538}
   editorStates:
   - {fileID: 114754650323727066}
   livesInScene: 0
+--- !u!114 &114004666600146074
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
+  m_Name: modDivisor
+  m_EditorClassIdentifier: 
+  body: {fileID: 114640476112060766}
+  side: 4
+  sidePosition: 59
+  sideOffset: 0
+  connection: {fileID: 114748818948358462}
+  typeID: Float
+--- !u!114 &114006566174459144
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e7026d0da7df848ab67d517ac12d74, type: 3}
+  m_Name: Difference
+  m_EditorClassIdentifier: 
+  body: {fileID: 114524419077342766}
+  side: 2
+  sidePosition: 36
+  sideOffset: 0
+  connections:
+  - {fileID: 114889092838313188}
+  typeID: Float
+  calculationBlockade: 0
+--- !u!114 &114049597994649398
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39f5df92d12f07d45a4fcfb96e1b36d8, type: 3}
+  m_Name: Display Node
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 249.20004
+    y: -14.999985
+    width: 150
+    height: 50
+  nodeKnobs:
+  - {fileID: 114889092838313188}
+  Inputs:
+  - {fileID: 114889092838313188}
+  Outputs: []
+  assigned: 1
+  value: 121.45
 --- !u!114 &114066436323337796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -33,8 +107,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 128.40004
-    y: 105.799995
+    x: -188.59996
+    y: 527.8
     width: 130
     height: 100
   nodeKnobs:
@@ -43,7 +117,7 @@ MonoBehaviour:
   - {fileID: 114303340513739712}
   Outputs: []
   scene: 2
---- !u!114 &114074483464879786
+--- !u!114 &114088483883647262
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -52,14 +126,57 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
-  m_Name: 
+  m_Name: Value
   m_EditorClassIdentifier: 
-  body: {fileID: 114836934314334800}
+  body: {fileID: 114137245047579062}
   side: 4
-  sidePosition: 59
+  sidePosition: 31
   sideOffset: 0
-  connection: {fileID: 0}
+  connection: {fileID: 114131141736762850}
   typeID: Float
+--- !u!114 &114131141736762850
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e7026d0da7df848ab67d517ac12d74, type: 3}
+  m_Name: Quotient
+  m_EditorClassIdentifier: 
+  body: {fileID: 114457146503182662}
+  side: 2
+  sidePosition: 36
+  sideOffset: 0
+  connections:
+  - {fileID: 114088483883647262}
+  typeID: Float
+  calculationBlockade: 0
+--- !u!114 &114137245047579062
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39f5df92d12f07d45a4fcfb96e1b36d8, type: 3}
+  m_Name: Display Node
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 263.20004
+    y: 92.000015
+    width: 150
+    height: 50
+  nodeKnobs:
+  - {fileID: 114088483883647262}
+  Inputs:
+  - {fileID: 114088483883647262}
+  Outputs: []
+  assigned: 1
+  value: 61.725
 --- !u!114 &114149377714775456
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -73,9 +190,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114248213048024806}
   side: 4
-  sidePosition: 49
+  sidePosition: 47
   sideOffset: 0
-  connection: {fileID: 114194503000895046}
+  connection: {fileID: 0}
+  typeID: Float
+--- !u!114 &114167648863374958
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e7026d0da7df848ab67d517ac12d74, type: 3}
+  m_Name: Root
+  m_EditorClassIdentifier: 
+  body: {fileID: 114466979835379828}
+  side: 2
+  sidePosition: 36
+  sideOffset: 0
+  connections:
+  - {fileID: 114963778625071752}
+  typeID: Float
+  calculationBlockade: 0
+--- !u!114 &114180198384312642
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
+  m_Name: Minuend
+  m_EditorClassIdentifier: 
+  body: {fileID: 114524419077342766}
+  side: 4
+  sidePosition: 36
+  sideOffset: 0
+  connection: {fileID: 114234336316070428}
   typeID: Float
 --- !u!114 &114192892028795912
 MonoBehaviour:
@@ -94,7 +247,41 @@ MonoBehaviour:
   sideOffset: 0
   connection: {fileID: 0}
   typeID: Float
---- !u!114 &114194503000895046
+--- !u!114 &114203758234673554
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
+  m_Name: Numerator
+  m_EditorClassIdentifier: 
+  body: {fileID: 114457146503182662}
+  side: 4
+  sidePosition: 36
+  sideOffset: 0
+  connection: {fileID: 114234336316070428}
+  typeID: Float
+--- !u!114 &114216846030621872
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
+  m_Name: Base
+  m_EditorClassIdentifier: 
+  body: {fileID: 114434860879316538}
+  side: 4
+  sidePosition: 20
+  sideOffset: 0
+  connection: {fileID: 0}
+  typeID: Float
+--- !u!114 &114234336316070428
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -103,18 +290,37 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42e7026d0da7df848ab67d517ac12d74, type: 3}
-  m_Name: 
+  m_Name: Value
   m_EditorClassIdentifier: 
-  body: {fileID: 114613374786983566}
+  body: {fileID: 114650014291687690}
   side: 2
-  sidePosition: 38
+  sidePosition: 31
   sideOffset: 0
   connections:
-  - {fileID: 114285046270257630}
-  - {fileID: 114901008964238774}
-  - {fileID: 114149377714775456}
+  - {fileID: 114974520608551242}
+  - {fileID: 114673776806837172}
+  - {fileID: 114180198384312642}
+  - {fileID: 114203758234673554}
+  - {fileID: 114359727413069384}
   typeID: Float
   calculationBlockade: 0
+--- !u!114 &114243850746552576
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
+  m_Name: Denominator
+  m_EditorClassIdentifier: 
+  body: {fileID: 114457146503182662}
+  side: 4
+  sidePosition: 59
+  sideOffset: 0
+  connection: {fileID: 114748818948358462}
+  typeID: Float
 --- !u!114 &114248213048024806
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -128,8 +334,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: -101.20001
-    y: -190.70001
+    x: -411.2
+    y: 17.299988
     width: 200
     height: 100
   nodeKnobs:
@@ -144,57 +350,6 @@ MonoBehaviour:
   type: 0
   Input1Val: 4534
   Input2Val: 1
---- !u!114 &114256735534893768
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  body: {fileID: 114613374786983566}
-  side: 4
-  sidePosition: 36
-  sideOffset: 0
-  connection: {fileID: 0}
-  typeID: Float
---- !u!114 &114284724570325920
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  body: {fileID: 114613374786983566}
-  side: 4
-  sidePosition: 57
-  sideOffset: 0
-  connection: {fileID: 0}
-  typeID: Float
---- !u!114 &114285046270257630
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  body: {fileID: 114836934314334800}
-  side: 4
-  sidePosition: 36
-  sideOffset: 0
-  connection: {fileID: 114194503000895046}
-  typeID: Float
 --- !u!114 &114303340513739712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -212,6 +367,46 @@ MonoBehaviour:
   sideOffset: 0
   connection: {fileID: 114370272486990772}
   typeID: Flow
+--- !u!114 &114311618202709458
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3dd50b389073b148b5ec10e419dc073, type: 3}
+  m_Name: Input Node
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: -464.79996
+    y: -232
+    width: 200
+    height: 50
+  nodeKnobs:
+  - {fileID: 114748818948358462}
+  Inputs: []
+  Outputs:
+  - {fileID: 114748818948358462}
+  value: 2
+--- !u!114 &114359727413069384
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
+  m_Name: Dividend
+  m_EditorClassIdentifier: 
+  body: {fileID: 114640476112060766}
+  side: 4
+  sidePosition: 36
+  sideOffset: 0
+  connection: {fileID: 114234336316070428}
+  typeID: Float
 --- !u!114 &114370272486990772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -231,6 +426,111 @@ MonoBehaviour:
   - {fileID: 114303340513739712}
   typeID: Flow
   calculationBlockade: 0
+--- !u!114 &114398821671788130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39f5df92d12f07d45a4fcfb96e1b36d8, type: 3}
+  m_Name: Display Node
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 247.20004
+    y: -261
+    width: 150
+    height: 50
+  nodeKnobs:
+  - {fileID: 114676948927870122}
+  Inputs:
+  - {fileID: 114676948927870122}
+  Outputs: []
+  assigned: 1
+  value: 125.45
+--- !u!114 &114434860879316538
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be6e6defd9cb6824ebf59fcd3455ba1d, type: 3}
+  m_Name: Power
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 45.200043
+    y: 205.00002
+    width: 150
+    height: 70
+  nodeKnobs:
+  - {fileID: 114216846030621872}
+  - {fileID: 114942829526781998}
+  - {fileID: 114543749812637000}
+  Inputs:
+  - {fileID: 114216846030621872}
+  - {fileID: 114942829526781998}
+  Outputs:
+  - {fileID: 114543749812637000}
+  Base: 0
+  exponent: 0
+--- !u!114 &114457146503182662
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aa106ec3b163834b8b47898b4c83bde, type: 3}
+  m_Name: Divide
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 16.200043
+    y: 87.000015
+    width: 150
+    height: 70
+  nodeKnobs:
+  - {fileID: 114203758234673554}
+  - {fileID: 114243850746552576}
+  - {fileID: 114131141736762850}
+  Inputs:
+  - {fileID: 114203758234673554}
+  - {fileID: 114243850746552576}
+  Outputs:
+  - {fileID: 114131141736762850}
+  numerator: 123.45
+  denominator: 2
+--- !u!114 &114466979835379828
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94a37f84e9b50384fbe7858f220986da, type: 3}
+  m_Name: Square Root
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 4.2000427
+    y: 421
+    width: 150
+    height: 70
+  nodeKnobs:
+  - {fileID: 114742224337285540}
+  - {fileID: 114167648863374958}
+  Inputs:
+  - {fileID: 114742224337285540}
+  Outputs:
+  - {fileID: 114167648863374958}
+  radicand: 2
 --- !u!114 &114501164202623468
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -244,8 +544,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: -177.99997
-    y: 107.39997
+    x: -466.99997
+    y: 485.39996
     width: 200
     height: 180
   nodeKnobs:
@@ -260,7 +560,7 @@ MonoBehaviour:
   - {fileID: 114370272486990772}
   - {fileID: 114622039594776676}
   content: 
---- !u!114 &114613374786983566
+--- !u!114 &114524419077342766
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -268,26 +568,115 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5840669bfb2766247bb4189e61c39233, type: 3}
-  m_Name: Add
+  m_Script: {fileID: 11500000, guid: c661dd886386ecf4ab8f254cfebd92c7, type: 3}
+  m_Name: Subtract
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: -361.40002
-    y: -179.3
+    x: 12.200043
+    y: -21.999985
     width: 150
-    height: 90
+    height: 70
   nodeKnobs:
-  - {fileID: 114256735534893768}
-  - {fileID: 114284724570325920}
-  - {fileID: 114194503000895046}
+  - {fileID: 114180198384312642}
+  - {fileID: 114843330954933142}
+  - {fileID: 114006566174459144}
   Inputs:
-  - {fileID: 114256735534893768}
-  - {fileID: 114284724570325920}
+  - {fileID: 114180198384312642}
+  - {fileID: 114843330954933142}
   Outputs:
-  - {fileID: 114194503000895046}
-  Input1Val: 0
-  Input2Val: 0
+  - {fileID: 114006566174459144}
+  minuend: 123.45
+  subtrahend: 2
+--- !u!114 &114543749812637000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e7026d0da7df848ab67d517ac12d74, type: 3}
+  m_Name: Power
+  m_EditorClassIdentifier: 
+  body: {fileID: 114434860879316538}
+  side: 2
+  sidePosition: 20
+  sideOffset: 0
+  connections: []
+  typeID: Float
+  calculationBlockade: 0
+--- !u!114 &114560587737574266
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e7026d0da7df848ab67d517ac12d74, type: 3}
+  m_Name: Product
+  m_EditorClassIdentifier: 
+  body: {fileID: 114640476112060766}
+  side: 2
+  sidePosition: 36
+  sideOffset: 0
+  connections:
+  - {fileID: 114731783071538022}
+  typeID: Float
+  calculationBlockade: 0
+--- !u!114 &114575881685044002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39f5df92d12f07d45a4fcfb96e1b36d8, type: 3}
+  m_Name: Display Node
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 263.20004
+    y: 430
+    width: 150
+    height: 50
+  nodeKnobs:
+  - {fileID: 114963778625071752}
+  Inputs:
+  - {fileID: 114963778625071752}
+  Outputs: []
+  assigned: 1
+  value: 1.4142135
+--- !u!114 &114580933410742614
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f32b0f60209d78b42969b8610c219350, type: 3}
+  m_Name: Multiply
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 19.200043
+    y: -143.99998
+    width: 150
+    height: 70
+  nodeKnobs:
+  - {fileID: 114673776806837172}
+  - {fileID: 114805337746340188}
+  - {fileID: 114766799644018190}
+  Inputs:
+  - {fileID: 114673776806837172}
+  - {fileID: 114805337746340188}
+  Outputs:
+  - {fileID: 114766799644018190}
+  factor1: 123.45
+  factor2: 2
 --- !u!114 &114622039594776676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -306,6 +695,145 @@ MonoBehaviour:
   connections: []
   typeID: Float
   calculationBlockade: 0
+--- !u!114 &114627502853299268
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5840669bfb2766247bb4189e61c39233, type: 3}
+  m_Name: Add
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 4.2000427
+    y: -278
+    width: 150
+    height: 70
+  nodeKnobs:
+  - {fileID: 114974520608551242}
+  - {fileID: 114628237097603840}
+  - {fileID: 114649196124302164}
+  Inputs:
+  - {fileID: 114974520608551242}
+  - {fileID: 114628237097603840}
+  Outputs:
+  - {fileID: 114649196124302164}
+  summand1: 123.45
+  summand2: 2
+--- !u!114 &114628237097603840
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
+  m_Name: Summand 2
+  m_EditorClassIdentifier: 
+  body: {fileID: 114627502853299268}
+  side: 4
+  sidePosition: 59
+  sideOffset: 0
+  connection: {fileID: 114748818948358462}
+  typeID: Float
+--- !u!114 &114640476112060766
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2b2b3daa85d16f4fa2497af6d1abadd, type: 3}
+  m_Name: Modulo
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 11.200043
+    y: 300
+    width: 150
+    height: 70
+  nodeKnobs:
+  - {fileID: 114359727413069384}
+  - {fileID: 114004666600146074}
+  - {fileID: 114560587737574266}
+  Inputs:
+  - {fileID: 114359727413069384}
+  - {fileID: 114004666600146074}
+  Outputs:
+  - {fileID: 114560587737574266}
+  dividend: 123.45
+  modDivisor: 2
+--- !u!114 &114641772236508288
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39f5df92d12f07d45a4fcfb96e1b36d8, type: 3}
+  m_Name: Display Node
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 249.20004
+    y: -140.99998
+    width: 150
+    height: 50
+  nodeKnobs:
+  - {fileID: 114727912990707836}
+  Inputs:
+  - {fileID: 114727912990707836}
+  Outputs: []
+  assigned: 1
+  value: 246.9
+--- !u!114 &114649196124302164
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e7026d0da7df848ab67d517ac12d74, type: 3}
+  m_Name: Sum
+  m_EditorClassIdentifier: 
+  body: {fileID: 114627502853299268}
+  side: 2
+  sidePosition: 36
+  sideOffset: 0
+  connections:
+  - {fileID: 114676948927870122}
+  typeID: Float
+  calculationBlockade: 0
+--- !u!114 &114650014291687690
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3dd50b389073b148b5ec10e419dc073, type: 3}
+  m_Name: Input Node
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: -464.79996
+    y: -302
+    width: 200
+    height: 50
+  nodeKnobs:
+  - {fileID: 114234336316070428}
+  Inputs: []
+  Outputs:
+  - {fileID: 114234336316070428}
+  value: 123.45
 --- !u!114 &114671847647844356
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -324,7 +852,92 @@ MonoBehaviour:
   connections: []
   typeID: Float
   calculationBlockade: 0
---- !u!114 &114717469632541900
+--- !u!114 &114673776806837172
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
+  m_Name: Factor 1
+  m_EditorClassIdentifier: 
+  body: {fileID: 114580933410742614}
+  side: 4
+  sidePosition: 36
+  sideOffset: 0
+  connection: {fileID: 114234336316070428}
+  typeID: Float
+--- !u!114 &114676948927870122
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
+  m_Name: Value
+  m_EditorClassIdentifier: 
+  body: {fileID: 114398821671788130}
+  side: 4
+  sidePosition: 31
+  sideOffset: 0
+  connection: {fileID: 114649196124302164}
+  typeID: Float
+--- !u!114 &114727912990707836
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
+  m_Name: Value
+  m_EditorClassIdentifier: 
+  body: {fileID: 114641772236508288}
+  side: 4
+  sidePosition: 31
+  sideOffset: 0
+  connection: {fileID: 114766799644018190}
+  typeID: Float
+--- !u!114 &114731783071538022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
+  m_Name: Value
+  m_EditorClassIdentifier: 
+  body: {fileID: 114996712677686410}
+  side: 4
+  sidePosition: 31
+  sideOffset: 0
+  connection: {fileID: 114560587737574266}
+  typeID: Float
+--- !u!114 &114742224337285540
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
+  m_Name: Radicand
+  m_EditorClassIdentifier: 
+  body: {fileID: 114466979835379828}
+  side: 4
+  sidePosition: 36
+  sideOffset: 0
+  connection: {fileID: 114748818948358462}
+  typeID: Float
+--- !u!114 &114748818948358462
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -333,13 +946,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42e7026d0da7df848ab67d517ac12d74, type: 3}
-  m_Name: 
+  m_Name: Value
   m_EditorClassIdentifier: 
-  body: {fileID: 114836934314334800}
+  body: {fileID: 114311618202709458}
   side: 2
-  sidePosition: 36
+  sidePosition: 31
   sideOffset: 0
-  connections: []
+  connections:
+  - {fileID: 114628237097603840}
+  - {fileID: 114805337746340188}
+  - {fileID: 114843330954933142}
+  - {fileID: 114243850746552576}
+  - {fileID: 114004666600146074}
+  - {fileID: 114742224337285540}
   typeID: Float
   calculationBlockade: 0
 --- !u!114 &114754650323727066
@@ -356,10 +975,10 @@ MonoBehaviour:
   canvas: {fileID: 11400000}
   parentEditor: {fileID: 0}
   drawing: 1
-  selectedNode: {fileID: 0}
-  panOffset: {x: 53.199955, y: -57.800003}
-  zoom: 0.8
---- !u!114 &114836934314334800
+  selectedNode: {fileID: 114640476112060766}
+  panOffset: {x: 7.7999573, y: -185.00002}
+  zoom: 1
+--- !u!114 &114766799644018190
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -367,26 +986,68 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5840669bfb2766247bb4189e61c39233, type: 3}
-  m_Name: Add
+  m_Script: {fileID: 11500000, guid: 42e7026d0da7df848ab67d517ac12d74, type: 3}
+  m_Name: Product
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: -100.99999
-    y: -75.1
-    width: 150
-    height: 120
-  nodeKnobs:
-  - {fileID: 114285046270257630}
-  - {fileID: 114074483464879786}
-  - {fileID: 114717469632541900}
-  Inputs:
-  - {fileID: 114285046270257630}
-  - {fileID: 114074483464879786}
-  Outputs:
-  - {fileID: 114717469632541900}
-  Input1Val: 4535
-  Input2Val: 4535
+  body: {fileID: 114580933410742614}
+  side: 2
+  sidePosition: 36
+  sideOffset: 0
+  connections:
+  - {fileID: 114727912990707836}
+  typeID: Float
+  calculationBlockade: 0
+--- !u!114 &114779976580500192
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
+  m_Name: Value
+  m_EditorClassIdentifier: 
+  body: {fileID: 114930064554101896}
+  side: 4
+  sidePosition: 31
+  sideOffset: 0
+  connection: {fileID: 0}
+  typeID: Float
+--- !u!114 &114805337746340188
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
+  m_Name: Factor 2
+  m_EditorClassIdentifier: 
+  body: {fileID: 114580933410742614}
+  side: 4
+  sidePosition: 59
+  sideOffset: 0
+  connection: {fileID: 114748818948358462}
+  typeID: Float
+--- !u!114 &114843330954933142
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
+  m_Name: Subtrahend
+  m_EditorClassIdentifier: 
+  body: {fileID: 114524419077342766}
+  side: 4
+  sidePosition: 59
+  sideOffset: 0
+  connection: {fileID: 114748818948358462}
+  typeID: Float
 --- !u!114 &114885102137834824
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -404,6 +1065,23 @@ MonoBehaviour:
   sideOffset: 0
   connection: {fileID: 0}
   typeID: Flow
+--- !u!114 &114889092838313188
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
+  m_Name: Value
+  m_EditorClassIdentifier: 
+  body: {fileID: 114049597994649398}
+  side: 4
+  sidePosition: 31
+  sideOffset: 0
+  connection: {fileID: 114006566174459144}
+  typeID: Float
 --- !u!114 &114901008964238774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -419,5 +1097,104 @@ MonoBehaviour:
   side: 4
   sidePosition: 31
   sideOffset: 0
-  connection: {fileID: 114194503000895046}
+  connection: {fileID: 0}
   typeID: Float
+--- !u!114 &114930064554101896
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39f5df92d12f07d45a4fcfb96e1b36d8, type: 3}
+  m_Name: Display Node
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 256.20004
+    y: 198.00002
+    width: 150
+    height: 50
+  nodeKnobs:
+  - {fileID: 114779976580500192}
+  Inputs:
+  - {fileID: 114779976580500192}
+  Outputs: []
+  assigned: 0
+  value: 0
+--- !u!114 &114942829526781998
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
+  m_Name: Exponent
+  m_EditorClassIdentifier: 
+  body: {fileID: 114434860879316538}
+  side: 4
+  sidePosition: 20
+  sideOffset: 0
+  connection: {fileID: 0}
+  typeID: Float
+--- !u!114 &114963778625071752
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
+  m_Name: Value
+  m_EditorClassIdentifier: 
+  body: {fileID: 114575881685044002}
+  side: 4
+  sidePosition: 31
+  sideOffset: 0
+  connection: {fileID: 114167648863374958}
+  typeID: Float
+--- !u!114 &114974520608551242
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
+  m_Name: Summand 1
+  m_EditorClassIdentifier: 
+  body: {fileID: 114627502853299268}
+  side: 4
+  sidePosition: 36
+  sideOffset: 0
+  connection: {fileID: 114234336316070428}
+  typeID: Float
+--- !u!114 &114996712677686410
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39f5df92d12f07d45a4fcfb96e1b36d8, type: 3}
+  m_Name: Display Node
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 257.20004
+    y: 293
+    width: 150
+    height: 50
+  nodeKnobs:
+  - {fileID: 114731783071538022}
+  Inputs:
+  - {fileID: 114731783071538022}
+  Outputs: []
+  assigned: 1
+  value: 1.449997

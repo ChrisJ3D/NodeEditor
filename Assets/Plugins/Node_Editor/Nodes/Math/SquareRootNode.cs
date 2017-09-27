@@ -1,29 +1,28 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using NodeEditorFramework;
 using NodeEditorFramework.Utilities;
 
 namespace NodeEditorFramework.Standard
 {
-	[Node (false, "Math/Subtract")]
-	public class SubtractNode : Node 
+	[Node (false, "Math/Square Root")]
+	public class SquareRootNode : Node 
 	{
-		public const string ID = "subtractNode";
+		public const string ID = "SquareRootNode";
 		public override string GetID { get { return ID; } }
 
-		public float minuend = 0f;
-		public float subtrahend = 0f;
+		public float radicand = 0f;
 		protected string label = "";
 		
 		public override Node Create (Vector2 pos) 
 		{
-			SubtractNode node = CreateInstance<SubtractNode> ();
+			SquareRootNode node = CreateInstance<SquareRootNode> ();
 			
 			node.rect = new Rect (pos.x, pos.y, 150, 70);
-			node.name = "Subtract";
+			node.name = "Square Root";
 			
-			node.CreateInput ("Minuend", "Float");
-			node.CreateInput ("Subtrahend", "Float");
-			node.CreateOutput ("Difference", "Float");
+			node.CreateInput ("Radicand", "Float");
+			node.CreateOutput ("Root", "Float");
 			
 			return node;
 		}
@@ -43,17 +42,10 @@ namespace NodeEditorFramework.Standard
 			if (Inputs [0].connection != null)
 				GUILayout.Label (Inputs [0].name);
 			else
-				minuend = RTEditorGUI.FloatField (GUIContent.none, minuend);
+				radicand = RTEditorGUI.FloatField (GUIContent.none, radicand);
 			InputKnob (0);
 
 			GUILayout.Space(5f);
-			
-			// --
-			if (Inputs [1].connection != null)
-				GUILayout.Label (Inputs [1].name);
-			else
-				subtrahend = RTEditorGUI.FloatField (GUIContent.none, subtrahend);
-			InputKnob (1);
 
 			GUILayout.EndVertical ();
 			GUILayout.BeginVertical ();
@@ -71,11 +63,9 @@ namespace NodeEditorFramework.Standard
 				return false;
 
 			if (Inputs[0].connection != null)
-				minuend = Inputs[0].connection.GetValue<float> ();
-			if (Inputs[1].connection != null)
-				subtrahend = Inputs[1].connection.GetValue<float> ();
+				radicand = Inputs[0].connection.GetValue<float> ();
 
-			Outputs[0].SetValue<float> (minuend - subtrahend);
+			Outputs[0].SetValue<float> ((float)Math.Sqrt(radicand));
 
 			label = Outputs[0].GetValue(typeof(float)).ToString();
 

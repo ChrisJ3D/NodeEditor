@@ -10,8 +10,8 @@ namespace NodeEditorFramework.Standard
 		public const string ID = "addNode";
 		public override string GetID { get { return ID; } }
 
-		public float Input1Val = 0f;
-		public float Input2Val = 0f;
+		public float summand1 = 0f;
+		public float summand2 = 0f;
 		protected string label = "";
 		
 		public override Node Create (Vector2 pos) 
@@ -21,9 +21,9 @@ namespace NodeEditorFramework.Standard
 			node.rect = new Rect (pos.x, pos.y, 150, 70);
 			node.name = "Add";
 			
-			node.CreateInput ("", "Float");
-			node.CreateInput ("", "Float");
-			node.CreateOutput ("", "Float");
+			node.CreateInput ("Summand 1", "Float");
+			node.CreateInput ("Summand 2", "Float");
+			node.CreateOutput ("Sum", "Float");
 			
 			return node;
 		}
@@ -43,7 +43,7 @@ namespace NodeEditorFramework.Standard
 			if (Inputs [0].connection != null)
 				GUILayout.Label (Inputs [0].name);
 			else
-				Input1Val = RTEditorGUI.FloatField (GUIContent.none, Input1Val);
+				summand1 = RTEditorGUI.FloatField (GUIContent.none, summand1);
 			InputKnob (0);
 
 			GUILayout.Space(5f);
@@ -52,7 +52,7 @@ namespace NodeEditorFramework.Standard
 			if (Inputs [1].connection != null)
 				GUILayout.Label (Inputs [1].name);
 			else
-				Input2Val = RTEditorGUI.FloatField (GUIContent.none, Input2Val);
+				summand2 = RTEditorGUI.FloatField (GUIContent.none, summand2);
 			InputKnob (1);
 
 			GUILayout.EndVertical ();
@@ -71,11 +71,11 @@ namespace NodeEditorFramework.Standard
 				return false;
 
 			if (Inputs[0].connection != null)
-				Input1Val = Inputs[0].connection.GetValue<float> ();
+				summand1 = Inputs[0].connection.GetValue<float> ();
 			if (Inputs[1].connection != null)
-				Input2Val = Inputs[1].connection.GetValue<float> ();
+				summand2 = Inputs[1].connection.GetValue<float> ();
 
-			Outputs[0].SetValue<float> (Input1Val + Input2Val);
+			Outputs[0].SetValue<float> (summand1 + summand2);
 
 			label = Outputs[0].GetValue(typeof(float)).ToString();
 

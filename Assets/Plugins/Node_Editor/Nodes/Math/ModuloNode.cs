@@ -4,26 +4,26 @@ using NodeEditorFramework.Utilities;
 
 namespace NodeEditorFramework.Standard
 {
-	[Node (false, "Math/Subtract")]
-	public class SubtractNode : Node 
+	[Node (false, "Math/Modulo")]
+	public class ModuloNode : Node 
 	{
-		public const string ID = "subtractNode";
+		public const string ID = "moduloNode";
 		public override string GetID { get { return ID; } }
 
-		public float minuend = 0f;
-		public float subtrahend = 0f;
+		public float dividend = 0f;
+		public float modDivisor = 0f;
 		protected string label = "";
 		
 		public override Node Create (Vector2 pos) 
 		{
-			SubtractNode node = CreateInstance<SubtractNode> ();
+			ModuloNode node = CreateInstance<ModuloNode> ();
 			
 			node.rect = new Rect (pos.x, pos.y, 150, 70);
-			node.name = "Subtract";
+			node.name = "Modulo";
 			
-			node.CreateInput ("Minuend", "Float");
-			node.CreateInput ("Subtrahend", "Float");
-			node.CreateOutput ("Difference", "Float");
+			node.CreateInput ("Dividend", "Float");
+			node.CreateInput ("modDivisor", "Float");
+			node.CreateOutput ("Remainder", "Float");
 			
 			return node;
 		}
@@ -43,7 +43,7 @@ namespace NodeEditorFramework.Standard
 			if (Inputs [0].connection != null)
 				GUILayout.Label (Inputs [0].name);
 			else
-				minuend = RTEditorGUI.FloatField (GUIContent.none, minuend);
+				dividend = RTEditorGUI.FloatField (GUIContent.none, dividend);
 			InputKnob (0);
 
 			GUILayout.Space(5f);
@@ -52,7 +52,7 @@ namespace NodeEditorFramework.Standard
 			if (Inputs [1].connection != null)
 				GUILayout.Label (Inputs [1].name);
 			else
-				subtrahend = RTEditorGUI.FloatField (GUIContent.none, subtrahend);
+				modDivisor = RTEditorGUI.FloatField (GUIContent.none, modDivisor);
 			InputKnob (1);
 
 			GUILayout.EndVertical ();
@@ -71,11 +71,11 @@ namespace NodeEditorFramework.Standard
 				return false;
 
 			if (Inputs[0].connection != null)
-				minuend = Inputs[0].connection.GetValue<float> ();
+				dividend = Inputs[0].connection.GetValue<float> ();
 			if (Inputs[1].connection != null)
-				subtrahend = Inputs[1].connection.GetValue<float> ();
+				modDivisor = Inputs[1].connection.GetValue<float> ();
 
-			Outputs[0].SetValue<float> (minuend - subtrahend);
+			Outputs[0].SetValue<float> (dividend % modDivisor);
 
 			label = Outputs[0].GetValue(typeof(float)).ToString();
 
