@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Name: LastSession
   m_EditorClassIdentifier: 
   nodes:
-  - {fileID: 114248213048024806}
   - {fileID: 114641772236508288}
   - {fileID: 114398821671788130}
   - {fileID: 114580933410742614}
@@ -34,6 +33,7 @@ MonoBehaviour:
   - {fileID: 114772082370421528}
   - {fileID: 114297492440722102}
   - {fileID: 114367865371166968}
+  - {fileID: 114248213048024806}
   editorStates:
   - {fileID: 114754650323727066}
   livesInScene: 0
@@ -338,8 +338,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: -411.2
-    y: 17.299988
+    x: -422.2
+    y: -22.700012
     width: 200
     height: 100
   nodeKnobs:
@@ -986,7 +986,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114367865371166968}
   side: 2
-  sidePosition: 20
+  sidePosition: 31
   sideOffset: 0
   connections: []
   typeID: String
@@ -1082,8 +1082,8 @@ MonoBehaviour:
   parentEditor: {fileID: 0}
   drawing: 1
   selectedNode: {fileID: 0}
-  panOffset: {x: 93.79996, y: -161.00002}
-  zoom: 1
+  panOffset: {x: -28.45016, y: -31.980085}
+  zoom: 0.76
 --- !u!114 &114766799644018190
 MonoBehaviour:
   m_ObjectHideFlags: 1
