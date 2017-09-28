@@ -163,7 +163,7 @@ namespace NodeEditorFramework
 
 	public class IntType : IConnectionTypeDeclaration 
 	{
-		public string Identifier { get { return "int"; } }
+		public string Identifier { get { return "Int"; } }
 		public Type Type { get { return typeof(int); } }
 		public Color Color { get { return new Color(1f, 0.666f, 0.619f); } }
 		public string InKnobTex { get { return "Textures/In_Knob.png"; } }
@@ -188,11 +188,29 @@ namespace NodeEditorFramework
 		public string OutKnobTex { get { return "Textures/Out_Knob.png"; } }
 	}
 
-	public class VectorType : IConnectionTypeDeclaration
+	public class Vector2Type : IConnectionTypeDeclaration
 	{
-		public string Identifier { get { return "Vector"; } }
-		public Type Type { get { return typeof(string); } }
+		public string Identifier { get { return "Vector2"; } }
+		public Type Type { get { return typeof(Vector2); } }
 		public Color Color { get { return new Color(0.215f, 0.592f, 0.8f); } }
+		public string InKnobTex { get { return "Textures/In_Knob.png"; } }
+		public string OutKnobTex { get { return "Textures/Out_Knob.png"; } }
+	}
+
+	public class Vector3Type : IConnectionTypeDeclaration
+	{
+		public string Identifier { get { return "Vector3"; } }
+		public Type Type { get { return typeof(Vector3); } }
+		public Color Color { get { return new Color(0.215f, 0.592f, 0.9f); } }
+		public string InKnobTex { get { return "Textures/In_Knob.png"; } }
+		public string OutKnobTex { get { return "Textures/Out_Knob.png"; } }
+	}
+
+	public class Vector4Type : IConnectionTypeDeclaration
+	{
+		public string Identifier { get { return "Vector4"; } }
+		public Type Type { get { return typeof(Vector4); } }
+		public Color Color { get { return new Color(0.215f, 0.592f, 1f); } }
 		public string InKnobTex { get { return "Textures/In_Knob.png"; } }
 		public string OutKnobTex { get { return "Textures/Out_Knob.png"; } }
 	}

@@ -63,13 +63,17 @@ namespace NodeEditorFramework.Standard
 			
 			GUILayout.EndVertical ();
 			GUILayout.EndHorizontal ();
+
+			if (GUI.changed) {
+					NodeEditor.RecalculateFrom (this);
+			}
 			
 		}
 		
 		public override bool Calculate () 
 		{
-			if (!allInputsReady ())
-				return false;
+			// if (!allInputsReady ())
+			// 	return false;
 
 			if (Inputs[0].connection != null)
 				Base = Inputs[0].connection.GetValue<float> ();

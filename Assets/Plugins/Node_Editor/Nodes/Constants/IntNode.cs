@@ -6,29 +6,29 @@ using NodeEditorFramework.Utilities;
 namespace NodeEditorFramework.Standard
 {
 	[System.Serializable]
-	[Node (false, "Variables/String")]
-	public class StringNode : Node 
+	[Node (false, "Constants/Integer")]
+	public class IntNode : Node 
 	{
-		public const string ID = "StringNode";
+		public const string ID = "IntNode";
 		public override string GetID { get { return ID; } }
 
-		public string value = "";
+		public int value = 0;
 
 		public override Node Create (Vector2 pos) 
 		{
-			StringNode node = CreateInstance <StringNode> ();
+			IntNode node = CreateInstance <IntNode> ();
 
-			node.name = "String";
+			node.name = "Integer";
 			node.rect = new Rect (pos.x, pos.y, 200, 50);;
 
-			NodeOutput.Create (node, "Value", "String");
+			NodeOutput.Create (node, "Value", "Int");
 
 			return node;
 		}
 
 		protected internal override void NodeGUI () 
 		{
-			value = RTEditorGUI.TextField (new GUIContent(""), value, null);
+			value = RTEditorGUI.IntField (new GUIContent ("Value", "The input value of type int"), value);
 			OutputKnob (0);
 
 			if (GUI.changed)
@@ -37,7 +37,7 @@ namespace NodeEditorFramework.Standard
 
 		public override bool Calculate () 
 		{
-			Outputs[0].SetValue<string> (value);
+			Outputs[0].SetValue<int> (value);
 			return true;
 		}
 	}

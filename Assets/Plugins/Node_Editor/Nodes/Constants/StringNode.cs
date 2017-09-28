@@ -6,29 +6,29 @@ using NodeEditorFramework.Utilities;
 namespace NodeEditorFramework.Standard
 {
 	[System.Serializable]
-	[Node (false, "Variables/Bool")]
-	public class BoolNode : Node 
+	[Node (false, "Constants/String")]
+	public class StringNode : Node 
 	{
-		public const string ID = "BoolNode";
+		public const string ID = "StringNode";
 		public override string GetID { get { return ID; } }
 
-		public bool value = false;
+		public string value = "";
 
 		public override Node Create (Vector2 pos) 
 		{
-			BoolNode node = CreateInstance <BoolNode> ();
+			StringNode node = CreateInstance <StringNode> ();
 
-			node.name = "Boolean";
+			node.name = "String";
 			node.rect = new Rect (pos.x, pos.y, 200, 50);;
 
-			NodeOutput.Create (node, "Value", "Bool");
+			NodeOutput.Create (node, "Value", "String");
 
 			return node;
 		}
 
 		protected internal override void NodeGUI () 
 		{
-			value = RTEditorGUI.Toggle (value, "");
+			value = RTEditorGUI.TextField (new GUIContent(""), value, null);
 			OutputKnob (0);
 
 			if (GUI.changed)
@@ -37,7 +37,7 @@ namespace NodeEditorFramework.Standard
 
 		public override bool Calculate () 
 		{
-			Outputs[0].SetValue<bool> (value);
+			Outputs[0].SetValue<string> (value);
 			return true;
 		}
 	}

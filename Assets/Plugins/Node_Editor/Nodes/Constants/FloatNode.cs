@@ -6,7 +6,7 @@ using NodeEditorFramework.Utilities;
 namespace NodeEditorFramework.Standard
 {
 	[System.Serializable]
-	[Node (false, "Variables/Float")]
+	[Node (false, "Constants/Float")]
 	public class FloatNode : Node 
 	{
 		public const string ID = "FloatNode";
