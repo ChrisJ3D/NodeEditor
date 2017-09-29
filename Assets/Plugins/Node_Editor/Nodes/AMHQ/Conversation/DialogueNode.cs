@@ -43,10 +43,6 @@ namespace NodeEditorFramework.Standard
 			for (int outCnt = 1; outCnt < Outputs.Count; outCnt++)
 				Outputs[outCnt].DisplayLayout ();
 
-			// Get adjacent flow elements
-			Node flowSource = Inputs[0].connection != null ? Inputs[0].connection.body : null;
-			List<Node> flowTargets = Outputs[0].connections.Select ((NodeInput input) => input.body).ToList ();
-
 			// Display adjacent flow elements
 
 			GUILayout.TextArea(	content, 

@@ -59,7 +59,7 @@ namespace NodeEditorFramework.Standard
 			// 	return false;
 
 			if (Inputs[0].connection != null)
-				outputValue = Inputs[0].connection.GetValue<int> ();
+				outputValue = Inputs[0].connection.GetValue<float> ();
 
 			Outputs[0].SetValue<Vector4> (new Vector4(outputValue, outputValue, outputValue, outputValue));
 
