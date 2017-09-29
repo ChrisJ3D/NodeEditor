@@ -23,7 +23,7 @@ public class TextureInputNode : Node
 		return node;
 	}
 	
-	protected override void NodeGUI () 
+	protected internal override void NodeGUI () 
 	{
 		Outputs [0].DisplayLayout (new GUIContent ("Texture", "The input texture"));
 
@@ -32,7 +32,7 @@ public class TextureInputNode : Node
 		// TODO: Check if texture is readable
 
 		if (GUI.changed)
-			NodeEditor.curNodeCanvas.OnNodeChange (this);
+			NodeEditor.RecalculateFrom (this);
 	}
 	
 	public override bool Calculate () 

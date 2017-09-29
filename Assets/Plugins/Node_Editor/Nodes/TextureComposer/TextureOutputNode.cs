@@ -22,7 +22,7 @@ public class TextureOutputNode : Node
 		return node;
 	}
 
-	protected override void NodeGUI () 
+	protected internal override void NodeGUI () 
 	{
 		rect.height = tex == null? 50 : 200;
 
@@ -34,7 +34,7 @@ public class TextureOutputNode : Node
 		}
 
 		if (GUI.changed)
-			NodeEditor.curNodeCanvas.OnNodeChange (this);
+			NodeEditor.RecalculateFrom (this);
 	}
 	
 	public override bool Calculate () 

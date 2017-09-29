@@ -23,6 +23,10 @@ MonoBehaviour:
   - {fileID: 114864291205353844}
   - {fileID: 114032881936170530}
   - {fileID: 114642454513826904}
+  - {fileID: 114311133548205796}
+  - {fileID: 114861496740002182}
+  - {fileID: 114390721288308610}
+  - {fileID: 114635228821695854}
   editorStates:
   - {fileID: 114842066286995036}
   livesInScene: 0
@@ -99,6 +103,23 @@ MonoBehaviour:
   sideOffset: 0
   connection: {fileID: 114999671322406514}
   typeID: Float
+--- !u!114 &114049317484987054
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
+  m_Name: Texture
+  m_EditorClassIdentifier: 
+  body: {fileID: 114390721288308610}
+  side: 4
+  sidePosition: 31.5
+  sideOffset: 0
+  connection: {fileID: 114350883018127482}
+  typeID: Texture2D
 --- !u!114 &114065413033059526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -112,10 +133,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114127052099842160}
   side: 4
-  sidePosition: 86
+  sidePosition: 88.5
   sideOffset: 0
   connection: {fileID: 0}
   typeID: String
+--- !u!114 &114116682791310266
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
+  m_Name: Channel R
+  m_EditorClassIdentifier: 
+  body: {fileID: 114311133548205796}
+  side: 4
+  sidePosition: 31.5
+  sideOffset: 0
+  connection: {fileID: 114586909730251526}
+  typeID: Channel
 --- !u!114 &114127052099842160
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -171,7 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114864291205353844}
   side: 2
-  sidePosition: 63
+  sidePosition: 65.5
   sideOffset: 0
   connections:
   - {fileID: 114839057957375532}
@@ -192,7 +230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114642454513826904}
   side: 2
-  sidePosition: 33
+  sidePosition: 33.5
   sideOffset: 0
   connections: []
   typeID: Float
@@ -210,7 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114708165384283070}
   side: 4
-  sidePosition: 36
+  sidePosition: 36.5
   sideOffset: 0
   connection: {fileID: 114355263975925478}
   typeID: Float
@@ -227,7 +265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114552970239757418}
   side: 2
-  sidePosition: 51
+  sidePosition: 52.5
   sideOffset: 0
   connections: []
   typeID: Float
@@ -245,11 +283,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114708165384283070}
   side: 2
-  sidePosition: 36
+  sidePosition: 36.5
   sideOffset: 0
   connections: []
   typeID: Float
   calculationBlockade: 0
+--- !u!114 &114254769566370618
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
+  m_Name: Texture
+  m_EditorClassIdentifier: 
+  body: {fileID: 114861496740002182}
+  side: 4
+  sidePosition: 31.5
+  sideOffset: 0
+  connection: {fileID: 114929063555589024}
+  typeID: Texture2D
 --- !u!114 &114257309091281520
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -263,10 +318,83 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114127052099842160}
   side: 4
-  sidePosition: 140
+  sidePosition: 145.5
   sideOffset: 0
   connection: {fileID: 114721635621237506}
   typeID: Vector4
+--- !u!114 &114261350157656924
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
+  m_Name: Channel A
+  m_EditorClassIdentifier: 
+  body: {fileID: 114311133548205796}
+  side: 4
+  sidePosition: 88.5
+  sideOffset: 0
+  connection: {fileID: 114273370584483484}
+  typeID: Channel
+--- !u!114 &114261845417183650
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e7026d0da7df848ab67d517ac12d74, type: 3}
+  m_Name: Channel B
+  m_EditorClassIdentifier: 
+  body: {fileID: 114861496740002182}
+  side: 2
+  sidePosition: 69.5
+  sideOffset: 0
+  connections: []
+  typeID: Channel
+  calculationBlockade: 0
+--- !u!114 &114271985641163796
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e7026d0da7df848ab67d517ac12d74, type: 3}
+  m_Name: Channel R
+  m_EditorClassIdentifier: 
+  body: {fileID: 114861496740002182}
+  side: 2
+  sidePosition: 31.5
+  sideOffset: 0
+  connections:
+  - {fileID: 114630254513300930}
+  typeID: Channel
+  calculationBlockade: 0
+--- !u!114 &114273370584483484
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e7026d0da7df848ab67d517ac12d74, type: 3}
+  m_Name: Channel A
+  m_EditorClassIdentifier: 
+  body: {fileID: 114861496740002182}
+  side: 2
+  sidePosition: 88.5
+  sideOffset: 0
+  connections:
+  - {fileID: 114261350157656924}
+  typeID: Channel
+  calculationBlockade: 0
 --- !u!114 &114286097455198170
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -280,11 +408,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114032881936170530}
   side: 2
-  sidePosition: 69
+  sidePosition: 71.5
   sideOffset: 0
   connections: []
   typeID: Float
   calculationBlockade: 0
+--- !u!114 &114311133548205796
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b27c107f70281d9449ffa0b4dd591b98, type: 3}
+  m_Name: Channel Bundle
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: -25.599869
+    y: 589.40015
+    width: 200
+    height: 100
+  nodeKnobs:
+  - {fileID: 114350883018127482}
+  - {fileID: 114116682791310266}
+  - {fileID: 114630254513300930}
+  - {fileID: 114503680823893716}
+  - {fileID: 114261350157656924}
+  Inputs:
+  - {fileID: 114116682791310266}
+  - {fileID: 114630254513300930}
+  - {fileID: 114503680823893716}
+  - {fileID: 114261350157656924}
+  Outputs:
+  - {fileID: 114350883018127482}
 --- !u!114 &114335445307288488
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -298,10 +456,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114032881936170530}
   side: 2
-  sidePosition: 33
+  sidePosition: 33.5
   sideOffset: 0
   connections: []
   typeID: Float
+  calculationBlockade: 0
+--- !u!114 &114350883018127482
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e7026d0da7df848ab67d517ac12d74, type: 3}
+  m_Name: Bundled
+  m_EditorClassIdentifier: 
+  body: {fileID: 114311133548205796}
+  side: 2
+  sidePosition: 31.5
+  sideOffset: 0
+  connections:
+  - {fileID: 114049317484987054}
+  typeID: Texture2D
   calculationBlockade: 0
 --- !u!114 &114355263975925478
 MonoBehaviour:
@@ -316,7 +493,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114552970239757418}
   side: 2
-  sidePosition: 33
+  sidePosition: 33.5
   sideOffset: 0
   connections:
   - {fileID: 114209302775882240}
@@ -335,7 +512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114934807748096742}
   side: 2
-  sidePosition: 33
+  sidePosition: 33.5
   sideOffset: 0
   connections: []
   typeID: Vector4
@@ -353,10 +530,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114708165384283070}
   side: 4
-  sidePosition: 59
+  sidePosition: 60.5
   sideOffset: 0
   connection: {fileID: 114928995351929866}
   typeID: Float
+--- !u!114 &114390721288308610
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47fecab80465e3440b73ae10c07550bb, type: 3}
+  m_Name: Texture Info
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 293.6002
+    y: 595.40027
+    width: 150
+    height: 200
+  nodeKnobs:
+  - {fileID: 114049317484987054}
+  Inputs:
+  - {fileID: 114049317484987054}
+  Outputs: []
+  tex: {fileID: 0}
 --- !u!114 &114409646391010260
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -370,7 +570,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114127052099842160}
   side: 4
-  sidePosition: 31
+  sidePosition: 31.5
   sideOffset: 0
   connection: {fileID: 114411020216850568}
   typeID: Float
@@ -387,7 +587,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114642454513826904}
   side: 2
-  sidePosition: 51
+  sidePosition: 52.5
   sideOffset: 0
   connections:
   - {fileID: 114409646391010260}
@@ -406,7 +606,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114127052099842160}
   side: 4
-  sidePosition: 49
+  sidePosition: 50.5
   sideOffset: 0
   connection: {fileID: 0}
   typeID: Bool
@@ -446,10 +646,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114127052099842160}
   side: 4
-  sidePosition: 67
+  sidePosition: 69.5
   sideOffset: 0
   connection: {fileID: 0}
   typeID: Int
+--- !u!114 &114503680823893716
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
+  m_Name: Channel B
+  m_EditorClassIdentifier: 
+  body: {fileID: 114311133548205796}
+  side: 4
+  sidePosition: 69.5
+  sideOffset: 0
+  connection: {fileID: 0}
+  typeID: Channel
 --- !u!114 &114541746182719170
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -538,6 +755,65 @@ MonoBehaviour:
   sideOffset: 0
   connection: {fileID: 114689444538604096}
   typeID: Vector4
+--- !u!114 &114586909730251526
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e7026d0da7df848ab67d517ac12d74, type: 3}
+  m_Name: Channel G
+  m_EditorClassIdentifier: 
+  body: {fileID: 114861496740002182}
+  side: 2
+  sidePosition: 50.5
+  sideOffset: 0
+  connections:
+  - {fileID: 114116682791310266}
+  typeID: Channel
+  calculationBlockade: 0
+--- !u!114 &114630254513300930
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caff27366054dd44a30ddb5be369acc, type: 3}
+  m_Name: Channel G
+  m_EditorClassIdentifier: 
+  body: {fileID: 114311133548205796}
+  side: 4
+  sidePosition: 50.5
+  sideOffset: 0
+  connection: {fileID: 114271985641163796}
+  typeID: Channel
+--- !u!114 &114635228821695854
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac0ac56f3bed79e4eb2fb40897222619, type: 3}
+  m_Name: Texture Input
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: -416.59982
+    y: 546.60034
+    width: 100
+    height: 120
+  nodeKnobs:
+  - {fileID: 114929063555589024}
+  Inputs: []
+  Outputs:
+  - {fileID: 114929063555589024}
+  tex: {fileID: 2800000, guid: ee8799dababea234a929eee8c637bf08, type: 3}
 --- !u!114 &114642454513826904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -579,7 +855,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114568171944205598}
   side: 2
-  sidePosition: 47
+  sidePosition: 48.5
   sideOffset: 0
   connections:
   - {fileID: 114797485945644996}
@@ -598,7 +874,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114814144486371578}
   side: 2
-  sidePosition: 88
+  sidePosition: 90.5
   sideOffset: 0
   connections: []
   typeID: Float
@@ -616,7 +892,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114468964671667428}
   side: 2
-  sidePosition: 80
+  sidePosition: 82.5
   sideOffset: 0
   connections:
   - {fileID: 114571554677800150}
@@ -663,7 +939,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114019272286197492}
   side: 2
-  sidePosition: 31
+  sidePosition: 31.5
   sideOffset: 0
   connections:
   - {fileID: 114257309091281520}
@@ -682,7 +958,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114127052099842160}
   side: 4
-  sidePosition: 104
+  sidePosition: 107.5
   sideOffset: 0
   connection: {fileID: 0}
   typeID: Vector2
@@ -699,7 +975,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114552970239757418}
   side: 2
-  sidePosition: 69
+  sidePosition: 71.5
   sideOffset: 0
   connections: []
   typeID: Float
@@ -768,7 +1044,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114127052099842160}
   side: 4
-  sidePosition: 122
+  sidePosition: 126.5
   sideOffset: 0
   connection: {fileID: 114197172957055064}
   typeID: Vector3
@@ -787,8 +1063,38 @@ MonoBehaviour:
   parentEditor: {fileID: 0}
   drawing: 1
   selectedNode: {fileID: 0}
-  panOffset: {x: -155.60016, y: -284.60016}
-  zoom: 1.2
+  panOffset: {x: -51.40018, y: -470.4003}
+  zoom: 1.4
+--- !u!114 &114861496740002182
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88fc92efc62cca42b5d425a5d4639e4, type: 3}
+  m_Name: Texture Split
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: -252.39983
+    y: 582.20056
+    width: 150
+    height: 100
+  nodeKnobs:
+  - {fileID: 114254769566370618}
+  - {fileID: 114271985641163796}
+  - {fileID: 114586909730251526}
+  - {fileID: 114261845417183650}
+  - {fileID: 114273370584483484}
+  Inputs:
+  - {fileID: 114254769566370618}
+  Outputs:
+  - {fileID: 114271985641163796}
+  - {fileID: 114586909730251526}
+  - {fileID: 114261845417183650}
+  - {fileID: 114273370584483484}
 --- !u!114 &114864291205353844
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -825,7 +1131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114032881936170530}
   side: 2
-  sidePosition: 51
+  sidePosition: 52.5
   sideOffset: 0
   connections: []
   typeID: Float
@@ -843,11 +1149,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114814144486371578}
   side: 2
-  sidePosition: 33
+  sidePosition: 33.5
   sideOffset: 0
   connections:
   - {fileID: 114389580354116416}
   typeID: Float
+  calculationBlockade: 0
+--- !u!114 &114929063555589024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e7026d0da7df848ab67d517ac12d74, type: 3}
+  m_Name: Texture
+  m_EditorClassIdentifier: 
+  body: {fileID: 114635228821695854}
+  side: 2
+  sidePosition: 31.5
+  sideOffset: 0
+  connections:
+  - {fileID: 114254769566370618}
+  typeID: Texture2D
   calculationBlockade: 0
 --- !u!114 &114934807748096742
 MonoBehaviour:
@@ -887,7 +1212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114934807748096742}
   side: 4
-  sidePosition: 31
+  sidePosition: 31.5
   sideOffset: 0
   connection: {fileID: 0}
   typeID: Float
@@ -921,7 +1246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114814144486371578}
   side: 2
-  sidePosition: 69
+  sidePosition: 71.5
   sideOffset: 0
   connections: []
   typeID: Float
@@ -939,7 +1264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114814144486371578}
   side: 2
-  sidePosition: 51
+  sidePosition: 52.5
   sideOffset: 0
   connections:
   - {fileID: 114040587887772816}
