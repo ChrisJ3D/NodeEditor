@@ -47,7 +47,15 @@ namespace NodeEditorFramework
 				}
 				else 
 				{
-					typeData = types.Values.Count <= 0? null : types.Values.First ((TypeData data) => data.isValid () && data.Type == type);
+					if (types.Values.Count <= 0) {
+						typeData = null;
+					} else {
+						TypeData first = types.Values.First();
+						if (first.isValid() && first.Type == type)
+							typeData = first;
+					}
+
+					// typeData = types.Values.Count <= 0? null : types.Values.First ((TypeData data) => data.isValid () && data.Type == type);
 					if (typeData == null)
 						types.Add (typeName, typeData = new TypeData (type));
 				}
