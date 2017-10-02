@@ -31,7 +31,7 @@ namespace NodeEditorFramework.Standard
 			value.x = RTEditorGUI.FloatField (new GUIContent ("X", "The input value of type Vector4"), value.x);
 			value.y = RTEditorGUI.FloatField (new GUIContent ("Y", "The input value of type Vector4"), value.y);
 			value.z = RTEditorGUI.FloatField (new GUIContent ("Z", "The input value of type Vector4"), value.z);
-			value.w = RTEditorGUI.FloatField (new GUIContent ("Z", "The input value of type Vector4"), value.w);
+			value.w = RTEditorGUI.FloatField (new GUIContent ("W", "The input value of type Vector4"), value.w);
 			OutputKnob (0);
 
 			if (GUI.changed)
