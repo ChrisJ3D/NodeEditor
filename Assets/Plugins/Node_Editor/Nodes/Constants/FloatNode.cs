@@ -12,24 +12,41 @@ namespace NodeEditorFramework.Standard
 		public const string ID = "FloatNode";
 		public override string GetID { get { return ID; } }
 
-		public float value = 1f;
+		public Number value = new Number();
 
 		public override Node Create (Vector2 pos) 
 		{
 			FloatNode node = CreateInstance <FloatNode> ();
 
 			node.name = "Float";
-			node.rect = new Rect (pos.x, pos.y, 200, 50);;
+			node.rect = new Rect (pos.x, pos.y, 200, 50);
 
-			NodeOutput.Create (node, "Value", "Float");
+			node.CreateInput("Value", "Number");
+			node.CreateOutput ("Value", "Number");
 
 			return node;
 		}
 
 		protected internal override void NodeGUI () 
 		{
-			value = RTEditorGUI.FloatField (new GUIContent ("Value", "The input value of type float"), value);
-			OutputKnob (0);
+			GUILayout.BeginHorizontal();
+			GUILayout.BeginVertical();
+
+			GUILayout.Space(5f);
+
+			if (Inputs[0].connection != null) {
+				Inputs[0].DisplayLayout();
+			} else {
+				value = RTEditorGUI.FloatField (value);
+			}
+			
+			GUILayout.EndVertical();
+			GUILayout.BeginVertical();
+
+			Outputs[0].DisplayLayout(new GUIContent(value));
+
+			GUILayout.EndVertical();
+			GUILayout.EndHorizontal();
 
 			if (GUI.changed)
 				NodeEditor.RecalculateFrom (this);
@@ -37,7 +54,11 @@ namespace NodeEditorFramework.Standard
 
 		public override bool Calculate () 
 		{
-			Outputs[0].SetValue<float> (value);
+			if (Inputs[0].connection != null) {
+				value = Inputs[0].GetValue<Number>();
+			}
+			
+			Outputs[0].SetValue<Number> (value);
 			return true;
 		}
 	}

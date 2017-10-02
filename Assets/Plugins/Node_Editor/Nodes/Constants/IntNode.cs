@@ -12,7 +12,7 @@ namespace NodeEditorFramework.Standard
 		public const string ID = "IntNode";
 		public override string GetID { get { return ID; } }
 
-		public int value = 0;
+		public Number value = new Number();
 
 		public override Node Create (Vector2 pos) 
 		{
@@ -21,15 +21,31 @@ namespace NodeEditorFramework.Standard
 			node.name = "Integer";
 			node.rect = new Rect (pos.x, pos.y, 200, 50);;
 
-			NodeOutput.Create (node, "Value", "Int");
+			node.CreateInput("Value", "Number");
+			NodeOutput.Create (node, "Value", "Number");
 
 			return node;
 		}
 
 		protected internal override void NodeGUI () 
 		{
-			value = RTEditorGUI.IntField (new GUIContent ("Value", "The input value of type int"), value);
-			OutputKnob (0);
+			GUILayout.Space(5f);
+			GUILayout.BeginHorizontal();
+			GUILayout.BeginVertical();
+
+			if (Inputs[0].connection != null) {
+				Inputs[0].DisplayLayout();
+			} else {
+				value = RTEditorGUI.IntField (value);
+			}
+
+			GUILayout.EndVertical();
+			GUILayout.BeginVertical();
+			
+			Outputs[0].DisplayLayout(new GUIContent(value));
+
+			GUILayout.EndVertical();
+			GUILayout.EndHorizontal();
 
 			if (GUI.changed)
 				NodeEditor.RecalculateFrom (this);
@@ -37,7 +53,11 @@ namespace NodeEditorFramework.Standard
 
 		public override bool Calculate () 
 		{
-			Outputs[0].SetValue<int> (value);
+			if (Inputs[0].connection != null) {
+				value = Inputs[0].connection.GetValue<Number>().ToInt32();
+			}
+
+			Outputs[0].SetValue<Number> (value);
 			return true;
 		}
 	}

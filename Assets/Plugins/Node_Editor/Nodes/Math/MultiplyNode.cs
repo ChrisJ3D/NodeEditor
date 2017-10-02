@@ -10,8 +10,8 @@ namespace NodeEditorFramework.Standard
 		public const string ID = "multiplyNode";
 		public override string GetID { get { return ID; } }
 
-		public float factor1 = 0f;
-		public float factor2 = 0f;
+		public Number factor1 = 0f;
+		public Number factor2 = 0f;
 		protected string label = "";
 		
 		public override Node Create (Vector2 pos) 
@@ -21,9 +21,9 @@ namespace NodeEditorFramework.Standard
 			node.rect = new Rect (pos.x, pos.y, 150, 70);
 			node.name = "Multiply";
 			
-			node.CreateInput ("Factor 1", "Float");
-			node.CreateInput ("Factor 2", "Float");
-			node.CreateOutput ("Product", "Float");
+			node.CreateInput ("Factor 1", "Number");
+			node.CreateInput ("Factor 2", "Number");
+			node.CreateOutput ("Product", "Number");
 			
 			return node;
 		}
@@ -71,13 +71,11 @@ namespace NodeEditorFramework.Standard
 				return false;
 
 			if (Inputs[0].connection != null)
-				factor1 = Inputs[0].connection.GetValue<float> ();
+				factor1 = Inputs[0].connection.GetValue<Number> ();
 			if (Inputs[1].connection != null)
-				factor2 = Inputs[1].connection.GetValue<float> ();
+				factor2 = Inputs[1].connection.GetValue<Number> ();
 
-			Outputs[0].SetValue<float> (factor1 * factor2);
-
-			label = Outputs[0].GetValue(typeof(float)).ToString();
+			Outputs[0].SetValue<Number> (factor1 * factor2);
 
 			return true;
 		}

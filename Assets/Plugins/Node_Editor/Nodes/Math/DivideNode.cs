@@ -10,8 +10,8 @@ namespace NodeEditorFramework.Standard
 		public const string ID = "DivideNode";
 		public override string GetID { get { return ID; } }
 
-		public float numerator = 0f;
-		public float denominator = 0f;
+		public Number numerator = 0f;
+		public Number denominator = 0f;
 		protected string label = "";
 		
 		public override Node Create (Vector2 pos) 
@@ -21,9 +21,9 @@ namespace NodeEditorFramework.Standard
 			node.rect = new Rect (pos.x, pos.y, 150, 70);
 			node.name = "Divide";
 			
-			node.CreateInput ("Numerator", "Float");
-			node.CreateInput ("Denominator", "Float");
-			node.CreateOutput ("Quotient", "Float");
+			node.CreateInput ("Numerator", "Number");
+			node.CreateInput ("Denominator", "Number");
+			node.CreateOutput ("Quotient", "Number");
 			
 			return node;
 		}
@@ -71,13 +71,13 @@ namespace NodeEditorFramework.Standard
 				return false;
 
 			if (Inputs[0].connection != null)
-				numerator = Inputs[0].connection.GetValue<float> ();
+				numerator = Inputs[0].connection.GetValue<Number> ();
 			if (Inputs[1].connection != null)
-				denominator = Inputs[1].connection.GetValue<float> ();
+				denominator = Inputs[1].connection.GetValue<Number> ();
 
-			Outputs[0].SetValue<float> (numerator / denominator);
+			Outputs[0].SetValue<Number> (numerator / denominator);
 
-			label = Outputs[0].GetValue(typeof(float)).ToString();
+			label = Outputs[0].GetValue(typeof(Number)).ToString();
 
 			return true;
 		}

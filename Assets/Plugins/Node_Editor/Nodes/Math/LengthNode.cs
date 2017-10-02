@@ -11,7 +11,8 @@ namespace NodeEditorFramework.Standard
 		public const string ID = "LengthNode";
 		public override string GetID { get { return ID; } }
 
-		public float length = 0.0f;
+		public Number length = new Number();
+		protected string label = "";
 		
 		public override Node Create (Vector2 pos) 
 		{
@@ -20,8 +21,8 @@ namespace NodeEditorFramework.Standard
 			node.rect = new Rect (pos.x, pos.y, 150, 50);
 			node.name = "Length";
 			
-			node.CreateInput ("Vector", typeof(object).AssemblyQualifiedName);
-			node.CreateOutput ("Length", "Float");
+			node.CreateInput ("Vector", "Number");
+			node.CreateOutput ("Length", "Number");
 			
 			return node;
 		}
@@ -38,7 +39,7 @@ namespace NodeEditorFramework.Standard
 			GUILayout.EndVertical ();
 			GUILayout.BeginVertical ();
 			
-			Outputs [0].DisplayLayout ();
+			Outputs [0].DisplayLayout (new GUIContent(label));
 			
 			GUILayout.EndVertical ();
 			GUILayout.EndHorizontal ();
@@ -47,31 +48,19 @@ namespace NodeEditorFramework.Standard
 		
 		public override bool Calculate () 
 		{
-			if (!allInputsReady ())
+			if (!allInputsReady ()) {
+				label = "";
 				return false;
+			}
 
 			if (Inputs[0].connection != null) {
-				Type vectorType = Inputs[0].connection.GetValue ().GetType();
-
-				if (vectorType == typeof(Vector2)) {
-					Vector2 v = Inputs [0].connection.GetValue<Vector2>();
-					length =  Mathf.Sqrt((v.x * v.x) + (v.y * v.y));
-					Outputs[0].SetValue<float> (length);
-
-				} else if (vectorType == typeof(Vector3)) {
-					Vector3 v = Inputs [0].connection.GetValue<Vector3>();
-					length =  Mathf.Sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z));
-					Outputs[0].SetValue<float> (length);
-
-				} else if (vectorType == typeof(Vector4)) {
-					Vector4 v = Inputs [0].connection.GetValue<Vector4>();
-					length =  Mathf.Sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z) + (v.w * v.w));
-					Outputs[0].SetValue<float> (length);
-
-				} else {
-					return false;
-				}
+				Number v = Inputs [0].connection.GetValue<Number>();
+				length =  Mathf.Sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z) + (v.w * v.w));
+				Outputs[0].SetValue<Number> (length);
 			}
+
+			label = length.ToString();
+				
 			return true;
 		}
 	}

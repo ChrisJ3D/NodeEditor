@@ -11,7 +11,8 @@ namespace NodeEditorFramework.Standard
 		public const string ID = "NormalizeNode";
 		public override string GetID { get { return ID; } }
 
-		public object normalizedVector = null;
+		public Number normalizedVector = new Number();
+		protected string label = "";
 		
 		public override Node Create (Vector2 pos) 
 		{
@@ -20,8 +21,8 @@ namespace NodeEditorFramework.Standard
 			node.rect = new Rect (pos.x, pos.y, 150, 50);
 			node.name = "Normalize";
 			
-			node.CreateInput ("Vector", typeof(object).AssemblyQualifiedName);
-			node.CreateOutput ("Normalized", typeof(object).AssemblyQualifiedName);
+			node.CreateInput ("Vector", "Number");
+			node.CreateOutput ("Normalized", "Number");
 			
 			return node;
 		}
@@ -38,41 +39,32 @@ namespace NodeEditorFramework.Standard
 			GUILayout.EndVertical ();
 			GUILayout.BeginVertical ();
 			
-			Outputs [0].DisplayLayout ();
+			Outputs [0].DisplayLayout (new GUIContent(label));
 			
 			GUILayout.EndVertical ();
 			GUILayout.EndHorizontal ();
-			
+
+			if(GUI.changed) {
+				NodeEditor.RecalculateFrom(this);
+			}
 		}
 		
 		public override bool Calculate () 
 		{
-			if (!allInputsReady ())
+			if (!allInputsReady ()) {
+				label = "";
 				return false;
+			}
 
 			if (Inputs[0].connection != null) {
 				float length = 0.0f;
-				Type vectorType = Inputs[0].connection.GetValue ().GetType();
-
-				if (vectorType == typeof(Vector2)) {
-					Vector2 v = Inputs [0].connection.GetValue<Vector2>();
-					length =  Mathf.Sqrt((v.x * v.x) + (v.y * v.y));
-					Outputs[0].SetValue<Vector2> (v / length);
-
-				} else if (vectorType == typeof(Vector3)) {
-					Vector3 v = Inputs [0].connection.GetValue<Vector3>();
-					length =  Mathf.Sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z));
-					Outputs[0].SetValue<Vector3> (v / length);
-
-				} else if (vectorType == typeof(Vector4)) {
-					Vector4 v = Inputs [0].connection.GetValue<Vector4>();
-					length =  Mathf.Sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z) + (v.w * v.w));
-					Outputs[0].SetValue<Vector4> (v / length);
-
-				} else {
-					return false;
-				}
+				Number v = Inputs [0].connection.GetValue<Number>();
+				length =  Mathf.Sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z) + (v.w * v.w));
+				Outputs[0].SetValue<Number> (v / length);
 			}
+
+			label = Outputs[0].GetValue<Number> ().ToString();
+
 			return true;
 		}
 	}

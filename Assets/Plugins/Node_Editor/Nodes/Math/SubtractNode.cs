@@ -10,8 +10,8 @@ namespace NodeEditorFramework.Standard
 		public const string ID = "subtractNode";
 		public override string GetID { get { return ID; } }
 
-		public float minuend = 0f;
-		public float subtrahend = 0f;
+		public Number minuend = 0f;
+		public Number subtrahend = 0f;
 		protected string label = "";
 		
 		public override Node Create (Vector2 pos) 
@@ -21,9 +21,9 @@ namespace NodeEditorFramework.Standard
 			node.rect = new Rect (pos.x, pos.y, 150, 70);
 			node.name = "Subtract";
 			
-			node.CreateInput ("Minuend", "Float");
-			node.CreateInput ("Subtrahend", "Float");
-			node.CreateOutput ("Difference", "Float");
+			node.CreateInput ("Minuend", "Number");
+			node.CreateInput ("Subtrahend", "Number");
+			node.CreateOutput ("Difference", "Number");
 			
 			return node;
 		}
@@ -71,13 +71,13 @@ namespace NodeEditorFramework.Standard
 				return false;
 
 			if (Inputs[0].connection != null)
-				minuend = Inputs[0].connection.GetValue<float> ();
+				minuend = Inputs[0].connection.GetValue<Number> ();
 			if (Inputs[1].connection != null)
-				subtrahend = Inputs[1].connection.GetValue<float> ();
+				subtrahend = Inputs[1].connection.GetValue<Number> ();
 
-			Outputs[0].SetValue<float> (minuend - subtrahend);
+			Outputs[0].SetValue<Number> (minuend - subtrahend);
 
-			label = Outputs[0].GetValue(typeof(float)).ToString();
+			label = Outputs[0].GetValue(typeof(Number)).ToString();
 
 			return true;
 		}

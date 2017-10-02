@@ -12,7 +12,7 @@ namespace NodeEditorFramework.Standard
 		public const string ID = "Vector3Node";
 		public override string GetID { get { return ID; } }
 
-		public Vector3 value = new Vector3(0f,0f,0f);
+		public Number value = new Vector3(0f,0f,0f);
 
 		public override Node Create (Vector2 pos) 
 		{
@@ -21,7 +21,7 @@ namespace NodeEditorFramework.Standard
 			node.name = "Vector3";
 			node.rect = new Rect (pos.x, pos.y, 200, 80);;
 
-			NodeOutput.Create (node, "Value", "Vector3");
+			NodeOutput.Create (node, "Value", "Number");
 
 			return node;
 		}
@@ -39,7 +39,7 @@ namespace NodeEditorFramework.Standard
 
 		public override bool Calculate () 
 		{
-			Outputs[0].SetValue<Vector3> (value);
+			Outputs[0].SetValue<Number> (value);
 			return true;
 		}
 	}

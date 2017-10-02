@@ -11,8 +11,8 @@ namespace NodeEditorFramework.Standard
 		public const string ID = "powerNode";
 		public override string GetID { get { return ID; } }
 
-		public float Base = 0f;
-		public float exponent = 0f;
+		public Number Base = new Number();
+		public Number exponent = new Number();
 		protected string label = "";
 		
 		public override Node Create (Vector2 pos) 
@@ -22,9 +22,9 @@ namespace NodeEditorFramework.Standard
 			node.rect = new Rect (pos.x, pos.y, 150, 70);
 			node.name = "Power";
 			
-			node.CreateInput ("Base", "Float");
-			node.CreateInput ("Exponent", "Float");
-			node.CreateOutput ("Power", "Float");
+			node.CreateInput ("Base", "Number");
+			node.CreateInput ("Exponent", "Number");
+			node.CreateOutput ("Power", "Number");
 			
 			return node;
 		}
@@ -42,24 +42,22 @@ namespace NodeEditorFramework.Standard
 			// Inputs [1].DisplayLayout();
 
 			if (Inputs [0].connection != null)
-				GUILayout.Label (Inputs [0].name);
+				Inputs[0].DisplayLayout ();
 			else
 				Base = RTEditorGUI.FloatField (GUIContent.none, Base);
-			InputKnob (0);
 
 			GUILayout.Space(5f);
 			
 			// --
 			if (Inputs [1].connection != null)
-				GUILayout.Label (Inputs [1].name);
+				Inputs[1].DisplayLayout ();
 			else
 				exponent = RTEditorGUI.FloatField (GUIContent.none, exponent);
-			InputKnob (1);
 
 			GUILayout.EndVertical ();
 			GUILayout.BeginVertical ();
 			
-			Outputs [0].DisplayLayout ();
+			Outputs [0].DisplayLayout (new GUIContent(label));
 			
 			GUILayout.EndVertical ();
 			GUILayout.EndHorizontal ();
@@ -72,17 +70,16 @@ namespace NodeEditorFramework.Standard
 		
 		public override bool Calculate () 
 		{
-			// if (!allInputsReady ())
-			// 	return false;
 
 			if (Inputs[0].connection != null)
-				Base = Inputs[0].connection.GetValue<float> ();
+				Base = Inputs[0].connection.GetValue<Number> ();
+				
 			if (Inputs[1].connection != null)
-				exponent = Inputs[1].connection.GetValue<float> ();
+				exponent = Inputs[1].connection.GetValue<Number> ();
 
-			Outputs[0].SetValue<float> ((float)Math.Pow(Base, exponent));
+			Outputs[0].SetValue<Number> (Math.Pow(Base, exponent));
 
-			label = Outputs[0].GetValue(typeof(float)).ToString();
+			label = Outputs[0].GetValue<Number> ().ToString();
 
 			return true;
 		}

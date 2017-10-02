@@ -11,8 +11,8 @@ namespace NodeEditorFramework.Standard
 		public const string ID = "addNode";
 		public override string GetID { get { return ID; } }
 
-		public float summand1 = 0f;
-		public float summand2 = 0f;
+		public Number summand1 = new Number();
+		public Number summand2 = new Number();
 		
 		public override Node Create (Vector2 pos) 
 		{
@@ -21,13 +21,13 @@ namespace NodeEditorFramework.Standard
 			node.rect = new Rect (pos.x, pos.y, 150, 70);
 			node.name = "Add";
 			
-			NodeInput.Create(node, "Summand 1", typeof(object).AssemblyQualifiedName);
-			NodeInput.Create(node, "Summand 2", typeof(object).AssemblyQualifiedName);
+			NodeInput.Create(node, "Summand 1", "Number");
+			NodeInput.Create(node, "Summand 2", "Number");
 
 			// node.CreateInput ("Summand 1", "Float");
 			// node.CreateInput ("Summand 2", "Float");
 
-			node.CreateOutput("Sum", "Float");
+			node.CreateOutput("Sum", "Number");
 			
 			return node;
 		}
@@ -73,48 +73,15 @@ namespace NodeEditorFramework.Standard
 		
 		public override bool Calculate () 
 		{
-			object input1 = null;
-			object input2 = null;
-
-			if (!allInputsReady ())
-				return false;
-
 			if (Inputs[0].connection != null) {
-				input1 = Inputs[0].connection.GetValue();
+				summand1 = Inputs[0].connection.GetValue<Number>();
 			}
 
 			if (Inputs[1].connection != null) {
-				input2 = Inputs[1].connection.GetValue();
-			}
-
-			switch (input1.GetType().ToString()) {
-				case "System.Single":
-					Debug.Log(input1.GetType().ToString());
-					break;
-
-				case "int32":
-					Debug.Log(input1.GetType().ToString());
-					break;
-
-				case "float":
-					Debug.Log(input1.GetType().ToString());
-					break;
-
-				case "bool":
-					Debug.Log(input1.GetType().ToString());
-					break;
-
-				default:
-				Debug.LogWarning("Default case called, double check your other case definitions");
-				Debug.Log(input1.GetType().ToString());
-					break;
-			}
-
-			input1 = (float)Convert.ChangeType(input1, typeof(float));
-			input2 = (float)Convert.ChangeType(input2, typeof(float));
-
-			float result = (float)input1 + (float)input2;
-			Outputs[0].SetValue (result);
+				summand2 = Inputs[1].connection.GetValue<Number>();
+			} 
+			
+			Outputs[0].SetValue<Number> (summand1 + summand2);
 
 			return true;
 		}

@@ -10,8 +10,8 @@ namespace NodeEditorFramework.Standard
 		public const string ID = "moduloNode";
 		public override string GetID { get { return ID; } }
 
-		public float dividend = 0f;
-		public float modDivisor = 0f;
+		public Number dividend = new Number();
+		public Number modDivisor = new Number();
 		protected string label = "";
 		
 		public override Node Create (Vector2 pos) 
@@ -21,63 +21,58 @@ namespace NodeEditorFramework.Standard
 			node.rect = new Rect (pos.x, pos.y, 150, 70);
 			node.name = "Modulo";
 			
-			node.CreateInput ("Dividend", "Float");
-			node.CreateInput ("modDivisor", "Float");
-			node.CreateOutput ("Remainder", "Float");
-			
+			node.CreateInput ("Dividend", "Number");
+			node.CreateInput ("modDivisor", "Number");
+			node.CreateOutput ("Remainder", "Number");
+
 			return node;
 		}
 		
 		protected internal override void NodeGUI () 
 		{
-			//	GUILayout.Label (label);
-
 			GUILayout.Space(5f);
 
 			GUILayout.BeginHorizontal ();
 			GUILayout.BeginVertical ();
 
-			// Inputs [0].DisplayLayout ();
-			// Inputs [1].DisplayLayout();
-
 			if (Inputs [0].connection != null)
-				GUILayout.Label (Inputs [0].name);
+				Inputs [0].DisplayLayout ();
 			else
 				dividend = RTEditorGUI.FloatField (GUIContent.none, dividend);
-			InputKnob (0);
 
 			GUILayout.Space(5f);
 			
 			// --
 			if (Inputs [1].connection != null)
-				GUILayout.Label (Inputs [1].name);
+				Inputs [1].DisplayLayout ();
 			else
 				modDivisor = RTEditorGUI.FloatField (GUIContent.none, modDivisor);
-			InputKnob (1);
 
 			GUILayout.EndVertical ();
 			GUILayout.BeginVertical ();
 			
-			Outputs [0].DisplayLayout ();
+			Outputs [0].DisplayLayout (new GUIContent(label));
 			
 			GUILayout.EndVertical ();
 			GUILayout.EndHorizontal ();
 			
+			if(GUI.changed) {
+				NodeEditor.RecalculateFrom(this);
+			}
 		}
 		
 		public override bool Calculate () 
 		{
-			if (!allInputsReady ())
-				return false;
 
 			if (Inputs[0].connection != null)
-				dividend = Inputs[0].connection.GetValue<float> ();
+				dividend = Inputs[0].connection.GetValue<Number> ();
+
 			if (Inputs[1].connection != null)
-				modDivisor = Inputs[1].connection.GetValue<float> ();
+				modDivisor = Inputs[1].connection.GetValue<Number> ();
 
-			Outputs[0].SetValue<float> (dividend % modDivisor);
+			Outputs[0].SetValue<Number> (dividend % modDivisor);
 
-			label = Outputs[0].GetValue(typeof(float)).ToString();
+			label = Outputs[0].GetValue<Number> ().ToString();
 
 			return true;
 		}

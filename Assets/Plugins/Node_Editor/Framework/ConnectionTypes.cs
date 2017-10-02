@@ -222,4 +222,14 @@ namespace NodeEditorFramework
 		public string InKnobTex { get { return "Textures/In_Knob.png"; } }
 		public string OutKnobTex { get { return "Textures/Out_Knob.png"; } }
 	}
+
+	public class NumberType : IConnectionTypeDeclaration 
+	{
+		public string Identifier { get { return "Number"; } }
+		public Type Type { get { return typeof(Number); } }
+		public Color Color { get { return new Color(0.215f, 0.592f, 1f); } }
+		public string InKnobTex { get { return "Textures/In_Knob.png"; } }
+		public string OutKnobTex { get { return "Textures/Out_Knob.png"; } }
+
+	}
 }

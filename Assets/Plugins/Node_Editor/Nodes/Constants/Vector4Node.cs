@@ -12,35 +12,92 @@ namespace NodeEditorFramework.Standard
 		public const string ID = "Vector4Node";
 		public override string GetID { get { return ID; } }
 
-		public Vector4 value = new Vector4(0f,0f,0f,0f);
+		public Number value = new Number();
+		protected string label_x = "";
+		protected string label_y = "";
+		protected string label_z = "";
+		protected string label_w = "";
 
 		public override Node Create (Vector2 pos) 
 		{
 			Vector4Node node = CreateInstance <Vector4Node> ();
 
 			node.name = "Vector4";
-			node.rect = new Rect (pos.x, pos.y, 200, 90);;
+			node.rect = new Rect (pos.x, pos.y, 200, 100);;
 
-			NodeOutput.Create (node, "Value", "Vector4");
+			node.CreateInput ("X", "Number");
+			node.CreateInput ("Y", "Number");
+			node.CreateInput ("Z", "Number");
+			node.CreateInput ("W", "Number");
+
+			NodeOutput.Create (node, "Value", "Number");
 
 			return node;
 		}
 
 		protected internal override void NodeGUI () 
 		{
-			value.x = RTEditorGUI.FloatField (new GUIContent ("X", "The input value of type Vector4"), value.x);
-			value.y = RTEditorGUI.FloatField (new GUIContent ("Y", "The input value of type Vector4"), value.y);
-			value.z = RTEditorGUI.FloatField (new GUIContent ("Z", "The input value of type Vector4"), value.z);
-			value.w = RTEditorGUI.FloatField (new GUIContent ("W", "The input value of type Vector4"), value.w);
-			OutputKnob (0);
+			GUILayout.Space(5f);
 
-			if (GUI.changed)
-				NodeEditor.RecalculateFrom (this);
+			GUILayout.BeginHorizontal ();
+			GUILayout.BeginVertical();
+
+			if (Inputs[0].connection != null) {
+				Inputs[0].DisplayLayout();
+			} else {
+				value.x = RTEditorGUI.FloatField (GUIContent.none, value.x);
+			}
+
+			if (Inputs[1].connection != null) {
+				Inputs[1].DisplayLayout();
+			} else {
+				value.y = RTEditorGUI.FloatField (GUIContent.none, value.y);
+			}
+
+			if (Inputs[2].connection != null) {
+				Inputs[2].DisplayLayout();
+			} else {
+				value.z = RTEditorGUI.FloatField (GUIContent.none, value.z);
+			}
+
+			if (Inputs[3].connection != null) {
+				Inputs[3].DisplayLayout();
+			} else {
+				value.w = RTEditorGUI.FloatField (GUIContent.none, value.w);
+			}
+
+			GUILayout.EndVertical ();
+			GUILayout.BeginVertical ();
+			
+			Outputs [0].DisplayLayout (new GUIContent(value.ToString()));
+			
+			GUILayout.EndVertical ();
+			GUILayout.EndHorizontal ();
+			
+			if(GUI.changed) {
+				NodeEditor.RecalculateFrom(this);
+			}
 		}
 
 		public override bool Calculate () 
 		{
-			Outputs[0].SetValue<Vector4> (value);
+			if (Inputs[0].connection != null) {
+				value.x = Inputs[0].connection.GetValue<Number>().x;
+			}
+
+			if (Inputs[1].connection != null) {
+				value.y = Inputs[1].connection.GetValue<Number>().y;
+			}
+
+			if (Inputs[2].connection != null) {
+				value.z = Inputs[2].connection.GetValue<Number>().z;
+			}
+
+			if (Inputs[3].connection != null) {
+				value.w = Inputs[3].connection.GetValue<Number>().w;
+			}
+
+			Outputs[0].SetValue<Number> (value);
 			return true;
 		}
 	}

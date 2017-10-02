@@ -6,30 +6,43 @@ using NodeEditorFramework.Utilities;
 namespace NodeEditorFramework.Standard
 {
 	[System.Serializable]
-	[Node (false, "Constants/Bool")]
+	[Node (false, "Constants/Boolean")]
 	public class BoolNode : Node 
 	{
 		public const string ID = "BoolNode";
 		public override string GetID { get { return ID; } }
 
-		public bool value = false;
+		public Number value = new Number();
+		protected string label = "";
 
 		public override Node Create (Vector2 pos) 
 		{
 			BoolNode node = CreateInstance <BoolNode> ();
 
 			node.name = "Boolean";
-			node.rect = new Rect (pos.x, pos.y, 200, 50);;
+			node.rect = new Rect (pos.x, pos.y, 75, 50);;
 
-			NodeOutput.Create (node, "Value", "Bool");
+			NodeOutput.Create (node, "Value", "Number");
 
 			return node;
 		}
 
 		protected internal override void NodeGUI () 
-		{
-			value = RTEditorGUI.Toggle (value, "");
-			OutputKnob (0);
+		{			
+			GUILayout.Space(5f);
+
+			GUILayout.BeginHorizontal ();
+			GUILayout.BeginVertical ();
+
+			value = RTEditorGUI.Toggle (value, label);
+
+			GUILayout.EndVertical();
+			GUILayout.BeginVertical();
+
+			Outputs[0].DisplayLayout(new GUIContent(label));
+
+			GUILayout.EndVertical();
+			GUILayout.EndHorizontal();
 
 			if (GUI.changed)
 				NodeEditor.RecalculateFrom (this);
@@ -37,7 +50,8 @@ namespace NodeEditorFramework.Standard
 
 		public override bool Calculate () 
 		{
-			Outputs[0].SetValue<bool> (value);
+			Outputs[0].SetValue<Number> (value);
+			label = value.ToBool().ToString();
 			return true;
 		}
 	}
