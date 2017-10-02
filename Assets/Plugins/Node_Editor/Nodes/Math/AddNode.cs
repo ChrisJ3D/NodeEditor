@@ -87,6 +87,29 @@ namespace NodeEditorFramework.Standard
 				input2 = Inputs[1].connection.GetValue();
 			}
 
+			switch (input1.GetType().ToString()) {
+				case "System.Single":
+					Debug.Log(input1.GetType().ToString());
+					break;
+
+				case "int32":
+					Debug.Log(input1.GetType().ToString());
+					break;
+
+				case "float":
+					Debug.Log(input1.GetType().ToString());
+					break;
+
+				case "bool":
+					Debug.Log(input1.GetType().ToString());
+					break;
+
+				default:
+				Debug.LogWarning("Default case called, double check your other case definitions");
+				Debug.Log(input1.GetType().ToString());
+					break;
+			}
+
 			input1 = (float)Convert.ChangeType(input1, typeof(float));
 			input2 = (float)Convert.ChangeType(input2, typeof(float));
 
