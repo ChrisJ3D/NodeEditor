@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using NodeEditorFramework;
 
-[Node (false, "Utility/Display Expression")]
+[Node (false, "Example/Expression/Display Expression")]
 public class ExpressionDisplayNode : Node 
 {
 	public const string ID = "displayExpNode";

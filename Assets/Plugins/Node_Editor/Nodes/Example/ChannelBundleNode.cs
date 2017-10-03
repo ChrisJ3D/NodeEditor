@@ -2,7 +2,7 @@
 using System.Collections;
 using NodeEditorFramework;
 
-[Node (false, "Texture/Channel Bundle")]
+[Node (false, "Example/Texture/Channel Bundle")]
 public class ChannelBundleNode : Node 
 {
 	public const string ID = "channelBundleNode";

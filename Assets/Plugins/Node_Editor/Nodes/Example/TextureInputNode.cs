@@ -3,7 +3,7 @@ using System.Collections;
 using NodeEditorFramework;
 using NodeEditorFramework.Utilities;
 
-[Node (false, "Texture/Texture Input")]
+[Node (false, "Example/Texture/Texture Input")]
 public class TextureInputNode : Node 
 {
 	public const string ID = "texInNode";

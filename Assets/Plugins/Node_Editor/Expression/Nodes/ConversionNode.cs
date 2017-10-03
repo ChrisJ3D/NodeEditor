@@ -6,7 +6,7 @@ using System.Linq;
 using NodeEditorFramework;
 using NodeEditorFramework.Utilities;
 
-[Node (false, "Utility/Conversion Node")]
+[Node (false, "Example/Expression/Conversion Node")]
 public class ConversionNode : Node 
 {
 	public const string ID = "conversionNode";

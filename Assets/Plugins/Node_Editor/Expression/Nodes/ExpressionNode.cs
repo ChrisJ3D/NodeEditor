@@ -7,7 +7,7 @@ using UnityEngine;
 using NodeEditorFramework;
 using NodeEditorFramework.Utilities;
 
-[Node (false, "Utility/Expression Node")]
+[Node (false, "Example/Expression/Expression Node")]
 public class ExpressionNode : Node 
 {
 	public const string ID = "expressionNode";

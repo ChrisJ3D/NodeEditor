@@ -123,7 +123,11 @@ public class Number {
 	}
 
 	public override string ToString() {
-		// string label = ("(" + _value[0] + ", " + _value[1] + ", " + _value[2] + ", " +_value[3] + ")");
+		string label = String.Format("({0}, {1}, {2}, {3})", _value[0], _value[1], _value[2], _value[3]);
+		return label;
+	}
+
+	public string ToStringShort() {
 		string label = _value[0].ToString();
 		return label;
 	}

@@ -28,8 +28,10 @@ namespace NodeEditorFramework.Standard
 			node.CreateOutput ("Flow", "Flow", NodeSide.Right, 10);
 
 			// Some Connections
-			node.CreateInput ("Value", "Float");
-			node.CreateOutput ("Output val", "Float");
+			node.CreateInput ("Character", "Number");
+			node.CreateInput ("Pose", "Number");
+			node.CreateInput ("Expression", "Number");
+			
 
 			return node;
 		}
@@ -43,21 +45,12 @@ namespace NodeEditorFramework.Standard
 			for (int outCnt = 1; outCnt < Outputs.Count; outCnt++)
 				Outputs[outCnt].DisplayLayout ();
 
-			// Display adjacent flow elements
-
 			GUILayout.TextArea(	content, 
 								GUILayout.MaxHeight(115f));
-
 		}
 		
 		public override bool Calculate () 
 		{
-			// The following can NOT be used anymore until I implement conenction blocking though as the flow connections never have a value
-	//		if (!allInputsReady ())
-	//			return false;
-
-			// Do your calc stuff
-			Outputs[1].SetValue<float> (Inputs[1].GetValue<float> () * 5);
 			return true;
 		}
 	}

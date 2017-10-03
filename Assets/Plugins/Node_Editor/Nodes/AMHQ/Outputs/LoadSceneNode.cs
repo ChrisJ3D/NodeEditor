@@ -36,10 +36,6 @@ namespace NodeEditorFramework.Standard
 			for (int inCnt = 1; inCnt < Inputs.Count; inCnt++)
 				Inputs[inCnt].DisplayLayout ();
 
-			// Get adjacent flow elements
-			Node flowSource = Inputs[0].connection != null ? Inputs[0].connection.body : null;
-
-			// Display adjacent flow elements
 			GUILayout.Space(10f);
 			GUILayout.Label("Scene");
 			scene = (Example)UnityEditor.EditorGUILayout.EnumPopup (scene);
@@ -47,26 +43,13 @@ namespace NodeEditorFramework.Standard
 		
 		public override bool Calculate () 
 		{
-			// The following can NOT be used anymore until I implement conenction blocking though as the flow connections never have a value
-	//		if (!allInputsReady ())
-	//			return false;
-
-			// Do your calc stuff
-
+			
 			// UnityEngine.SceneManagement.SceneManager.LoadScene(scene.ToString());
 			return true;
 		}
 	}
 
 	// Connection Type only for visual purposes
-	public class LoadSceneType : IConnectionTypeDeclaration 
-	{
-		public string Identifier { get { return "Load Scene"; } }
-		public Type Type { get { return typeof(void); } }
-		public Color Color { get { return Color.cyan; } }
-		public string InKnobTex { get { return "Textures/In_Knob.png"; } }
-		public string OutKnobTex { get { return "Textures/Out_Knob.png"; } }
-	}
 
 	public enum Example {
 		HELLO,

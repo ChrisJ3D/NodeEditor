@@ -12,7 +12,7 @@ using Object = UnityEngine.Object;
 using GenericMenu = UnityEditor.GenericMenu;
 #endif
 
-[Node (false, "Utility/Action Node")]
+[Node (false, "Example/Expression/Action Node")]
 public class ActionNode : Node 
 {
 	public const string ID = "actionNode";

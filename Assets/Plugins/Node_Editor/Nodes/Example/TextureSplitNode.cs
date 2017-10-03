@@ -2,7 +2,7 @@
 using System.Collections;
 using NodeEditorFramework;
 
-[Node (false, "Texture/Texture Split")]
+[Node (false, "Example/Texture/Texture Split")]
 public class TextureSplitNode : Node 
 {
 	public const string ID = "texSplitNode";
