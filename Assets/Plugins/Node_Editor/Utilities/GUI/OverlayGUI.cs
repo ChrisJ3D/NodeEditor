@@ -1,27 +1,42 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+#if UNITY_EDITOR
+using MenuFunction = UnityEditor.GenericMenu.MenuFunction;
+using MenuFunctionData = UnityEditor.GenericMenu.MenuFunction2;
+#else
+using MenuFunction = NodeEditorFramework.Utilities.OverlayGUI.CustomMenuFunction;
+using MenuFunctionData = NodeEditorFramework.Utilities.OverlayGUI.CustomMenuFunctionData;
+#endif
+
 namespace NodeEditorFramework.Utilities 
 {
 	public static class OverlayGUI 
 	{
-		public static PopupMenu currentPopup;
+		public delegate void CustomMenuFunction();
+		public delegate void CustomMenuFunctionData(object userData);
+
+		private static string currentEditorUser;
+
+		public static string openedPopupUser = "NONE";
+		public static PopupMenu openedPopup;
 
 		/// <summary>
 		/// Returns if any popup currently has control.
 		/// </summary>
 		public static bool HasPopupControl () 
 		{
-			return currentPopup != null;
+			return openedPopup != null && currentEditorUser == openedPopupUser;
 		}
 
 		/// <summary>
 		/// Starts the OverlayGUI (Call before any other GUI code!)
 		/// </summary>
-		public static void StartOverlayGUI () 
+		public static void StartOverlayGUI (string editorUser) 
 		{
-			if (currentPopup != null && Event.current.type != EventType.Layout && Event.current.type != EventType.Repaint)
-				currentPopup.Draw ();
+			currentEditorUser = editorUser;
+			if (HasPopupControl () && Event.current.type != EventType.Layout && Event.current.type != EventType.Repaint)
+				openedPopup.Draw ();
 		}
 
 		/// <summary>
@@ -29,8 +44,29 @@ namespace NodeEditorFramework.Utilities
 		/// </summary>
 		public static void EndOverlayGUI () 
 		{
-			if (currentPopup != null && (Event.current.type == EventType.Layout || Event.current.type == EventType.Repaint))
-				currentPopup.Draw ();
+			if (HasPopupControl () && (Event.current.type == EventType.Layout || Event.current.type == EventType.Repaint))
+				openedPopup.Draw ();
+		}
+
+		/// <summary>
+		/// Opens the specified popupMenu in the current editor users and closes all other popups
+		/// </summary>
+		public static void OpenPopup (PopupMenu popup)
+		{
+			openedPopup = popup;
+			openedPopupUser = currentEditorUser;
+		}
+
+		/// <summary>
+		/// Closes the popup in the current editor if existant
+		/// </summary>
+		public static void ClosePopup ()
+		{
+			if (HasPopupControl ())
+			{
+				openedPopup = null;
+				openedPopupUser = "NONE";
+			}
 		}
 	}
 
@@ -39,9 +75,6 @@ namespace NodeEditorFramework.Utilities
 	/// </summary>
 	public class PopupMenu 
 	{
-		public delegate void MenuFunction ();
-		public delegate void MenuFunctionData (object userData);
-		
 		public List<MenuItem> menuItems = new List<MenuItem> ();
 		
 		// State
@@ -58,7 +91,9 @@ namespace NodeEditorFramework.Utilities
 		public static GUIStyle selectedLabel;
 
 		public float minWidth;
-		
+
+		private const float minCloseDistance = 200;
+
 		public PopupMenu () 
 		{
 			SetupGUI ();
@@ -68,11 +103,11 @@ namespace NodeEditorFramework.Utilities
 		{
 			backgroundStyle = new GUIStyle (GUI.skin.box);
 			backgroundStyle.contentOffset = new Vector2 (2, 2);
-			expandRight = NodeEditorFramework.Utilities.ResourceManager.LoadTexture ("Textures/expandRight.png");
+			expandRight = ResourceManager.LoadTexture ("Textures/expandRight.png");
 			itemHeight = GUI.skin.label.CalcHeight (new GUIContent ("text"), 100);
 			
 			selectedLabel = new GUIStyle (GUI.skin.label);
-			selectedLabel.normal.background = NodeEditorFramework.Utilities.RTEditorGUI.ColorToTex (1, new Color (0.4f, 0.4f, 0.4f));
+			selectedLabel.normal.background = RTEditorGUI.ColorToTex (1, new Color (0.4f, 0.4f, 0.4f));
 		}
 
 		public void Show (Vector2 pos, float MinWidth = 40)
@@ -80,12 +115,12 @@ namespace NodeEditorFramework.Utilities
 			minWidth = MinWidth;
 			position = calculateRect (pos, menuItems, minWidth);
 			selectedPath = "";
-			OverlayGUI.currentPopup = this;
+			OverlayGUI.OpenPopup (this);
 		}
 
 		public Vector2 Position { get { return position.position; } }
 
-		#region Creation
+#region Creation
 		
 		public void AddItem (GUIContent content, bool on, MenuFunctionData func, object userData)
 		{
@@ -152,44 +187,33 @@ namespace NodeEditorFramework.Utilities
 			return null;
 		}
 		
-		#endregion
+#endregion
 		
-		#region Drawing
+#region Drawing
 		
 		public void Draw () 
 		{
-			bool inRect = DrawGroup (position, menuItems);
+			int inRect = DrawGroup (position, menuItems);
 			
 			while (groupToDraw != null && !close)
 			{
 				MenuItem group = groupToDraw;
 				groupToDraw = null;
-				if (group.group)
-				{
-					if (DrawGroup (group.groupPos, group.subItems))
-						inRect = true;
-				}
-			}
-			
-			if (!inRect || close) 
-			{
-				OverlayGUI.currentPopup = null;
+				if (group.group) // Draw group and find if the mouse is in group rect
+					inRect = Mathf.Max(inRect, DrawGroup(group.groupPos, group.subItems));
 			}
 
-			NodeEditorFramework.NodeEditor.RepaintClients ();
+			if (close || inRect < 2 || (Event.current.type == EventType.MouseDown && inRect < 3)) 
+				OverlayGUI.ClosePopup ();
+
+			NodeEditor.RepaintClients ();
 		}
 		
-		private bool DrawGroup (Rect pos, List<MenuItem> menuItems) 
+		private int DrawGroup (Rect pos, List<MenuItem> menuItems) 
 		{
 			Rect rect = calculateRect (pos.position, menuItems, minWidth);
-			
-			Rect clickRect = new Rect (rect);
-			clickRect.xMax += 20;
-			clickRect.xMin -= 20;
-			clickRect.yMax += 20;
-			clickRect.yMin -= 20;
-			bool inRect = clickRect.Contains (Event.current.mousePosition);
 
+			// DRAW GROUP
 			currentItemHeight = backgroundStyle.contentOffset.y;
 			GUI.BeginGroup (extendRect (rect, backgroundStyle.contentOffset), GUIContent.none, backgroundStyle);
 			for (int itemCnt = 0; itemCnt < menuItems.Count; itemCnt++)
@@ -198,7 +222,18 @@ namespace NodeEditorFramework.Utilities
 				if (close) break;
 			}
 			GUI.EndGroup ();
-			
+
+			// MOUSE POS RECT TEST
+			int inRect = 1; // State 1: Outside of all rects
+			if (rect.Contains(Event.current.mousePosition))
+				inRect = 3; // State 3: Inside group rect
+			else
+			{
+				Rect clickRect = new Rect(rect.x - minCloseDistance, rect.y - minCloseDistance, rect.width + 2 * minCloseDistance, rect.height + 2 * minCloseDistance);
+				if (clickRect.Contains(Event.current.mousePosition))
+					inRect = 2; // State 2: Inside extended click rect
+			}
+
 			return inRect;
 		}
 		
@@ -218,7 +253,7 @@ namespace NodeEditorFramework.Utilities
 					selectedPath = item.path;
 
 				bool selected = selectedPath == item.path || selectedPath.Contains (item.path + "/");
-				GUI.Label (labelRect, item.content, selected? selectedLabel : GUI.skin.label);
+				GUI.Label (labelRect, item.content, selected? NodeEditorGUI.nodeLabelSelected : NodeEditorGUI.nodeLabel);
 				
 				if (item.group) 
 				{
@@ -271,9 +306,9 @@ namespace NodeEditorFramework.Utilities
 			return new Rect (position.x, position.y - (down? 0 : size.y), size.x, size.y);
 		}
 		
-		#endregion
+#endregion
 		
-		#region Nested MenuItem
+#region Nested MenuItem
 		
 		public class MenuItem
 		{
@@ -330,7 +365,7 @@ namespace NodeEditorFramework.Utilities
 			}
 		}
 		
-		#endregion
+#endregion
 	}
 
 	/// <summary>
@@ -338,38 +373,81 @@ namespace NodeEditorFramework.Utilities
 	/// </summary>
 	public class GenericMenu
 	{
+#if UNITY_EDITOR
+		private UnityEditor.GenericMenu editorMenu;
+#endif
 		private static PopupMenu popup;
 
 		public Vector2 Position { get { return popup.Position; } }
 		
-		public GenericMenu () 
+		public GenericMenu (bool emulateEditor = false) 
 		{
-			popup = new PopupMenu ();
+#if UNITY_EDITOR
+			if (emulateEditor)
+				editorMenu = new UnityEditor.GenericMenu();
+			else
+#endif
+				popup = new PopupMenu ();
 		}
 		
 		public void ShowAsContext ()
 		{
-			popup.Show (GUIScaleUtility.GUIToScreenSpace (Event.current.mousePosition));
+#if UNITY_EDITOR
+			if (editorMenu != null)
+				editorMenu.ShowAsContext();
+			else
+#endif
+				popup.Show (GUIScaleUtility.GUIToScreenSpace(Event.current.mousePosition));
 		}
 
-		public void Show (Vector2 pos, float MinWidth = 40)
+		public void Show(Vector2 pos, float MinWidth = 40)
 		{
-			popup.Show (GUIScaleUtility.GUIToScreenSpace (pos), MinWidth);
+#if UNITY_EDITOR
+			if (editorMenu != null)
+				editorMenu.DropDown(new Rect (pos, Vector2.zero));
+			else
+#endif
+				popup.Show(GUIScaleUtility.GUIToScreenSpace (pos), MinWidth);
+		}
+
+		public void DropDown(Rect rect, float MinWidth = 40)
+		{
+#if UNITY_EDITOR
+			if (editorMenu != null)
+				editorMenu.DropDown(rect);
+			else
+#endif
+				popup.Show(GUIScaleUtility.GUIToScreenSpace (rect.position), Mathf.Max (rect.width, MinWidth));
+		}
+
+		public void AddItem (GUIContent content, bool on, MenuFunctionData func, object userData)
+		{
+#if UNITY_EDITOR
+			if (editorMenu != null)
+				editorMenu.AddItem (content, on, func, userData);
+			else
+#endif
+				popup.AddItem (content, on, func, userData);
 		}
 		
-		public void AddItem (GUIContent content, bool on, PopupMenu.MenuFunctionData func, object userData)
+		public void AddItem (GUIContent content, bool on, MenuFunction func)
 		{
-			popup.AddItem (content, on, func, userData);
-		}
-		
-		public void AddItem (GUIContent content, bool on, PopupMenu.MenuFunction func)
-		{
+#if UNITY_EDITOR
+			if (editorMenu != null)
+				editorMenu.AddItem(content, on, func);
+			else
+#endif
 			popup.AddItem (content, on, func);
 		}
 		
 		public void AddSeparator (string path)
 		{
-			popup.AddSeparator (path);
+#if UNITY_EDITOR
+			if (editorMenu != null)
+				editorMenu.AddSeparator(path);
+			else
+#endif
+				popup.AddSeparator (path);
 		}
 	}
 }

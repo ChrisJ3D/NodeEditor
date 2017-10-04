@@ -4,8 +4,8 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 
-using NodeEditorFramework;
 using NodeEditorFramework.Utilities;
+using NodeEditorFramework.IO;
 
 using Object = UnityEngine.Object;
 
@@ -13,9 +13,8 @@ namespace NodeEditorFramework
 {
 	/// <summary>
 	/// Central class of NodeEditor providing the GUI to draw the Node Editor Canvas, bundling all other parts of the Framework
-	/// Only Calculation is yet to be split from this
 	/// </summary>
-	public static class NodeEditor 
+	public static partial class NodeEditor 
 	{
 		public static string editorPath = "Assets/Plugins/Node_Editor/";
 
@@ -29,24 +28,37 @@ namespace NodeEditorFramework
 		public static Action ClientRepaints;
 		public static void RepaintClients () { if (ClientRepaints != null) ClientRepaints (); }
 
-		#region Setup
+		// Canvas Editing
+		private static Stack<NodeCanvas> editCanvasStack = new Stack<NodeCanvas> (4);
+		private static Stack<NodeEditorState> editEditorStateStack = new Stack<NodeEditorState> (4);
 
+		// Initiation
 		private static bool initiatedBase;
 		private static bool initiatedGUI;
 		public static bool InitiationError;
 
+		#region Setup
+
 		/// <summary>
 		/// Initiates the Node Editor if it wasn't yet
 		/// </summary>
-		public static void checkInit (bool GUIFunction) 
+		public static void checkInit(bool GUIFunction)
 		{
 			if (!InitiationError)
 			{
 				if (!initiatedBase)
-					setupBaseFramework ();
+					setupBaseFramework();
 				if (GUIFunction && !initiatedGUI)
-					setupGUI ();
+					setupGUI();
 			}
+		}
+
+		/// <summary>
+		/// Resets the initiation state so next time calling checkInit it will re-initiate
+		/// </summary>
+		public static void resetInit()
+		{
+			InitiationError = initiatedBase = initiatedGUI = false;
 		}
 
 		/// <summary>
@@ -72,9 +84,11 @@ namespace NodeEditorFramework
 			ResourceManager.SetDefaultResourcePath (editorPath + "Resources/");
 
 			// Run fetching algorithms searching the script assemblies for Custom Nodes / Connection Types / NodeCanvas Types
-			ConnectionTypes.FetchTypes ();
-			NodeTypes.FetchNodes ();
-			NodeCanvasManager.GetAllCanvasTypes();
+			ConnectionPortStyles.FetchConnectionPortStyles();
+			NodeTypes.FetchNodeTypes ();
+			NodeCanvasManager.FetchCanvasTypes ();
+			ConnectionPortManager.FetchNodeConnectionDeclarations ();
+			ImportExportManager.FetchIOFormats ();
 
 			// Setup Callback system
 			NodeEditorCallbacks.SetupReceivers ();
@@ -97,10 +111,10 @@ namespace NodeEditorFramework
 		private static void setupGUI ()
 		{
 			if (!initiatedBase)
-				setupBaseFramework ();
+				setupBaseFramework();
 			initiatedGUI = false;
 			
-			// Init GUIScaleUtility. This fetches reflected calls and my throw a message notifying about incompability.
+			// Init GUIScaleUtility. This fetches reflected calls and might throw a message notifying about incompability.
 			GUIScaleUtility.CheckInit ();
 
 			if (!NodeEditorGUI.Init ()) 
@@ -124,11 +138,11 @@ namespace NodeEditorFramework
 	#if UNITY_EDITOR
 			Object script = UnityEditor.AssetDatabase.LoadAssetAtPath (editorPath + "Framework/NodeEditor.cs", typeof(Object));
 			if (script == null) 
-			{
+			{ // Not installed in default path
 				string[] assets = UnityEditor.AssetDatabase.FindAssets ("NodeEditorCallbackReceiver"); // Something relatively unique
 				if (assets.Length != 1) 
 				{
-					assets = UnityEditor.AssetDatabase.FindAssets ("ConnectionTypes"); // Another try
+					assets = UnityEditor.AssetDatabase.FindAssets ("ConnectionPortManager"); // Another try
 					if (assets.Length != 1) 
 						throw new UnityException ("Node Editor: Not installed in default directory '" + editorPath + "'! Correct path could not be detected! Please correct the editorPath variable in NodeEditor.cs!");
 				}
@@ -155,7 +169,7 @@ namespace NodeEditorFramework
 		/// </summary>
 		public static void DrawCanvas (NodeCanvas nodeCanvas, NodeEditorState editorState)  
 		{
-			if (!editorState.drawing)
+			if (nodeCanvas == null || editorState == null || !editorState.drawing)
 				return;
 			checkInit (true);
 
@@ -169,26 +183,21 @@ namespace NodeEditorFramework
 		{
 			if (!editorState.drawing)
 				return;
-
-			// Store and restore later on in case of this being a nested Canvas
-			NodeCanvas prevNodeCanvas = curNodeCanvas;
-			NodeEditorState prevEditorState = curEditorState;
-			curNodeCanvas = nodeCanvas;
-			curEditorState = editorState;
+			
+			BeginEditingCanvas (nodeCanvas, editorState);
+			if (curNodeCanvas == null || curEditorState == null || !curEditorState.drawing)
+				return;
 
 			if (Event.current.type == EventType.Repaint) 
 			{ // Draw Background when Repainting
-				// Size in pixels the inividual background tiles will have on screen
-				float width = curEditorState.zoom / NodeEditorGUI.Background.width;
-				float height = curEditorState.zoom / NodeEditorGUI.Background.height;
-				// Offset of the grid relative to the GUI origin
-				Vector2 offset = curEditorState.zoomPos + curEditorState.panOffset/curEditorState.zoom;
-				// Rect in UV space that defines how to tile the background texture
-				Rect uvDrawRect = new Rect (-offset.x * width, 
-					(offset.y - curEditorState.canvasRect.height) * height,
-					curEditorState.canvasRect.width * width,
-					curEditorState.canvasRect.height * height);
-				GUI.DrawTextureWithTexCoords (curEditorState.canvasRect, NodeEditorGUI.Background, uvDrawRect);
+				// Offset from origin in tile units
+				Vector2 tileOffset = new Vector2 (-(curEditorState.zoomPos.x * curEditorState.zoom + curEditorState.panOffset.x) / NodeEditorGUI.Background.width, 
+					((curEditorState.zoomPos.y - curEditorState.canvasRect.height) * curEditorState.zoom + curEditorState.panOffset.y) / NodeEditorGUI.Background.height);
+				// Amount of tiles
+				Vector2 tileAmount = new Vector2 (Mathf.Round (curEditorState.canvasRect.width * curEditorState.zoom) / NodeEditorGUI.Background.width,
+					Mathf.Round (curEditorState.canvasRect.height * curEditorState.zoom) / NodeEditorGUI.Background.height);
+				// Draw tiled background
+				GUI.DrawTextureWithTexCoords (curEditorState.canvasRect, NodeEditorGUI.Background, new Rect (tileOffset, tileAmount));
 			}
 
 			// Handle input events
@@ -198,7 +207,7 @@ namespace NodeEditorFramework
 
 			// We're using a custom scale method, as default one is messing up clipping rect
 			Rect canvasRect = curEditorState.canvasRect;
-			curEditorState.zoomPanAdjust = GUIScaleUtility.BeginScale (ref canvasRect, curEditorState.zoomPos, curEditorState.zoom, false);
+			curEditorState.zoomPanAdjust = GUIScaleUtility.BeginScale (ref canvasRect, curEditorState.zoomPos, curEditorState.zoom, NodeEditorGUI.isEditorWindow, false);
 
 			// ---- BEGIN SCALE ----
 
@@ -212,18 +221,16 @@ namespace NodeEditorFramework
 				RepaintClients ();
 			}
 
-			if (curEditorState.connectOutput != null)
+			if (curEditorState.connectKnob != null)
 			{ // Draw the currently drawn connection
-				NodeOutput output = curEditorState.connectOutput;
-				Vector2 startPos = output.GetGUIKnob ().center;
-				Vector2 startDir = output.GetDirection ();
-				Vector2 endPos = Event.current.mousePosition;
-				// There is no specific direction of the end knob so we pick the best according to the relative position
-				Vector2 endDir = NodeEditorGUI.GetSecondConnectionVector (startPos, endPos, startDir);
-				NodeEditorGUI.DrawConnection (startPos, startDir, endPos, endDir, output.typeData.Color);
+				curEditorState.connectKnob.DrawConnection (Event.current.mousePosition);
 				RepaintClients ();
 			}
 
+			// Draw the groups below everything else
+			for (int groupCnt = 0; groupCnt < curNodeCanvas.groups.Count; groupCnt++)
+				curNodeCanvas.groups [groupCnt].DrawGroup ();
+			
 			// Push the active node to the top of the draw order.
 			if (Event.current.type == EventType.Layout && curEditorState.selectedNode != null)
 			{
@@ -252,8 +259,39 @@ namespace NodeEditorFramework
 			// Handle input events with less priority than node GUI controls
 			NodeEditorInputSystem.HandleLateInputEvents (curEditorState);
 
-			curNodeCanvas = prevNodeCanvas;
-			curEditorState = prevEditorState;
+			EndEditingCanvas ();
+		}
+
+		/// <summary>
+		/// Sets the specified canvas as the current context most functions work on
+		/// </summary>
+		public static void BeginEditingCanvas (NodeCanvas canvas)
+		{
+			NodeEditorState state = canvas.editorStates.Length >= 1? canvas.editorStates[0] : null;
+			BeginEditingCanvas (canvas, state);
+		}
+
+		/// <summary>
+		/// Sets the specified canvas as the current context most functions work on
+		/// </summary>
+		public static void BeginEditingCanvas (NodeCanvas canvas, NodeEditorState state)
+		{
+			if (state != null && state.canvas != canvas) 
+				state = null; // State does not belong to the canvas
+
+			editCanvasStack.Push (canvas);
+			editEditorStateStack.Push (state);
+			curNodeCanvas = canvas;
+			curEditorState = state;
+		}
+
+		/// <summary>
+		/// Restores the previously edited canvas as the current context
+		/// </summary>
+		public static void EndEditingCanvas ()
+		{
+			curNodeCanvas = editCanvasStack.Pop ();
+			curEditorState = editEditorStateStack.Pop ();
 		}
 
 		#endregion
@@ -265,14 +303,14 @@ namespace NodeEditorFramework
 		/// </summary>
 		public static Node NodeAtPosition (Vector2 canvasPos)
 		{
-			NodeKnob focusedKnob;
+			ConnectionKnob focusedKnob;
 			return NodeAtPosition (curEditorState, canvasPos, out focusedKnob);
 		}
 
 		/// <summary>
 		/// Returns the node at the specified canvas-space position in the current editor and returns a possible focused knob aswell
 		/// </summary>
-		public static Node NodeAtPosition (Vector2 canvasPos, out NodeKnob focusedKnob)
+		public static Node NodeAtPosition (Vector2 canvasPos, out ConnectionKnob focusedKnob)
 		{
 			return NodeAtPosition (curEditorState, canvasPos, out focusedKnob);
 		}
@@ -280,25 +318,17 @@ namespace NodeEditorFramework
 		/// <summary>
 		/// Returns the node at the specified canvas-space position in the specified editor and returns a possible focused knob aswell
 		/// </summary>
-		public static Node NodeAtPosition (NodeEditorState editorState, Vector2 canvasPos, out NodeKnob focusedKnob)
+		public static Node NodeAtPosition (NodeEditorState editorState, Vector2 canvasPos, out ConnectionKnob focusedKnob)
 		{
 			focusedKnob = null;
-			if (NodeEditorInputSystem.shouldIgnoreInput (editorState))
+			if (editorState == null || NodeEditorInputSystem.shouldIgnoreInput (editorState))
 				return null;
 			NodeCanvas canvas = editorState.canvas;
 			for (int nodeCnt = canvas.nodes.Count-1; nodeCnt >= 0; nodeCnt--) 
 			{ // Check from top to bottom because of the render order
 				Node node = canvas.nodes [nodeCnt];
-				if (node.rect.Contains (canvasPos))
-					return node;
-				for (int knobCnt = 0; knobCnt < node.nodeKnobs.Count; knobCnt++)
-				{ // Check if any nodeKnob is focused instead
-					if (node.nodeKnobs[knobCnt].GetCanvasSpaceKnob ().Contains (canvasPos)) 
-					{
-						focusedKnob = node.nodeKnobs[knobCnt];
-						return node;
-					}
-				}
+				if (node.ClickTest (canvasPos, out focusedKnob))
+					return node; // Node is clicked on
 			}
 			return null;
 		}
@@ -318,106 +348,6 @@ namespace NodeEditorFramework
 			return (screenPos - editorState.canvasRect.position - editorState.zoomPos) * editorState.zoom - editorState.panOffset;
 		}
 
-		#endregion
-
-		#region Calculation
-
-		// A list of Nodes from which calculation originates -> Call StartCalculation
-		public static List<Node> workList;
-		private static int calculationCount;
-
-		/// <summary>
-		/// Recalculate from every Input Node.
-		/// Usually does not need to be called at all, the smart calculation system is doing the job just fine
-		/// </summary>
-		public static void RecalculateAll (NodeCanvas nodeCanvas) 
-		{
-			workList = new List<Node> ();
-			foreach (Node node in nodeCanvas.nodes) 
-			{
-				if (node.isInput ())
-				{ // Add all Inputs
-					node.ClearCalculation ();
-					workList.Add (node);
-				}
-			}
-			StartCalculation ();
-		}
-		
-		/// <summary>
-		/// Recalculate from this node. 
-		/// Usually does not need to be called manually
-		/// </summary>
-		public static void RecalculateFrom (Node node) 
-		{
-			node.ClearCalculation ();
-			workList = new List<Node> { node };
-			StartCalculation ();
-		}
-		
-		/// <summary>
-		/// Iterates through workList and calculates everything, including children
-		/// </summary>
-		public static void StartCalculation () 
-		{
-			checkInit (false);
-			if (InitiationError)
-				return;
-			
-			if (workList == null || workList.Count == 0)
-				return;
-			// this blocks iterates through the worklist and starts calculating
-			// if a node returns false, it stops and adds the node to the worklist
-			// this workList is worked on until it's empty or a limit is reached
-			calculationCount = 0;
-			bool limitReached = false;
-			for (int roundCnt = 0; !limitReached; roundCnt++)
-			{ // Runs until every node possible is calculated
-				limitReached = true;
-				for (int workCnt = 0; workCnt < workList.Count; workCnt++) 
-				{
-					if (ContinueCalculation (workList [workCnt]))
-						limitReached = false;
-				}
-			}
-		}
-		
-		/// <summary>
-		/// Recursive function which continues calculation on this node and all the child nodes
-		/// Returns success/failure of this node only
-		/// </summary>
-		private static bool ContinueCalculation (Node node) 
-		{
-			if (node.calculated)
-				return false;
-			if ((node.descendantsCalculated () || node.isInLoop ()) && node.Calculate ())
-			{ // finished Calculating, continue with the children
-				node.calculated = true;
-				calculationCount++;
-				workList.Remove (node);
-				if (node.ContinueCalculation && calculationCount < 1000) 
-				{
-					for (int outCnt = 0; outCnt < node.Outputs.Count; outCnt++)
-					{
-						NodeOutput output = node.Outputs [outCnt];
-						if (!output.calculationBlockade)
-						{
-							for (int conCnt = 0; conCnt < output.connections.Count; conCnt++)
-								ContinueCalculation (output.connections [conCnt].body);
-						}
-					}
-				}
-				else if (calculationCount >= 1000)
-					Debug.LogError ("Stopped calculation because of suspected Recursion. Maximum calculation iteration is currently at 1000!");
-				return true;
-			}
-			else if (!workList.Contains (node)) 
-			{ // failed to calculate, add it to check later
-				workList.Add (node);
-			}
-			return false;
-		}
-		
 		#endregion
 	}
 }
