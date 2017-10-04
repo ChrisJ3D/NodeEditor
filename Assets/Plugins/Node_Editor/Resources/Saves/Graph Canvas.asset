@@ -13,8 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   editorStates:
   - {fileID: 114324048460756210}
-  saveName: Graph Canvas New
-  savePath: Assets/Plugins/Node_Editor/Resources/Saves/Graph Canvas New.asset
+  saveName: Graph Canvas
+  savePath: Assets/Plugins/Node_Editor/Resources/Saves/Graph Canvas.asset
   livesInScene: 0
   nodes:
   - {fileID: 114126862484380980}
@@ -39,11 +39,6 @@ MonoBehaviour:
   m_Name: Flow In
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 1.0452404
-    g: 0.26517266
-    b: 0.35651913
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Default
@@ -63,15 +58,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de03bdfc59265fe45ac36abd01b51a31, type: 3}
   m_Name: Flow Node
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
-  nodeKnobs: []
-  Inputs: []
-  Outputs: []
+  position: {x: 0, y: 0}
+  dynamicConnectionPorts: []
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  flowIn: {fileID: 0}
+  flowOut: {fileID: 0}
+  inputKnob: {fileID: 0}
+  outputKnob: {fileID: 0}
 --- !u!114 &114045993388539714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -84,11 +77,6 @@ MonoBehaviour:
   m_Name: Input
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Float
@@ -108,11 +96,6 @@ MonoBehaviour:
   m_Name: Flow Out
   m_EditorClassIdentifier: 
   body: {fileID: 114752074246807786}
-  color:
-    r: 1
-    g: 0
-    b: 0
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Flow
@@ -133,11 +116,6 @@ MonoBehaviour:
   m_Name: Flow Out
   m_EditorClassIdentifier: 
   body: {fileID: 114036459692221440}
-  color:
-    r: 1
-    g: 0
-    b: 0
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Flow
@@ -157,11 +135,6 @@ MonoBehaviour:
   m_Name: Output
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Float
@@ -181,11 +154,6 @@ MonoBehaviour:
   m_Name: Flow Out
   m_EditorClassIdentifier: 
   body: {fileID: 114533019071118712}
-  color:
-    r: 1
-    g: 0
-    b: 0
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Flow
@@ -206,11 +174,6 @@ MonoBehaviour:
   m_Name: Flow Out
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 1.0452404
-    g: 0.26517266
-    b: 0.35651913
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Default
@@ -230,11 +193,6 @@ MonoBehaviour:
   m_Name: Child 2
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 1.0452404
-    g: 0.26517266
-    b: 0.35651913
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Default
@@ -254,11 +212,6 @@ MonoBehaviour:
   m_Name: Child 3
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 1.0452404
-    g: 0.26517266
-    b: 0.35651913
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Default
@@ -278,11 +231,6 @@ MonoBehaviour:
   m_Name: Output
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Float
@@ -302,11 +250,8 @@ MonoBehaviour:
   m_Name: Graph Root Node
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
-  backgroundColor:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  dynamicConnectionPorts: []
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   flowChild1: {fileID: 114701550241503898}
   flowChild2: {fileID: 114241177249676398}
   flowChild3: {fileID: 114989475276865578}
@@ -322,11 +267,6 @@ MonoBehaviour:
   m_Name: Output
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Float
@@ -346,11 +286,6 @@ MonoBehaviour:
   m_Name: Flow In
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 1.0452404
-    g: 0.26517266
-    b: 0.35651913
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Default
@@ -371,11 +306,6 @@ MonoBehaviour:
   m_Name: Flow In
   m_EditorClassIdentifier: 
   body: {fileID: 114157133617813144}
-  color:
-    r: 1
-    g: 0
-    b: 0
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Flow
@@ -396,11 +326,6 @@ MonoBehaviour:
   m_Name: Input
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Float
@@ -419,15 +344,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de03bdfc59265fe45ac36abd01b51a31, type: 3}
   m_Name: Flow Node
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
-  nodeKnobs: []
-  Inputs: []
-  Outputs: []
+  position: {x: 0, y: 0}
+  dynamicConnectionPorts: []
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  flowIn: {fileID: 0}
+  flowOut: {fileID: 0}
+  inputKnob: {fileID: 0}
+  outputKnob: {fileID: 0}
 --- !u!114 &114159231354250366
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -440,11 +363,6 @@ MonoBehaviour:
   m_Name: Input
   m_EditorClassIdentifier: 
   body: {fileID: 114036459692221440}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Float
@@ -465,11 +383,6 @@ MonoBehaviour:
   m_Name: Input
   m_EditorClassIdentifier: 
   body: {fileID: 114181876052935640}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Float
@@ -489,11 +402,6 @@ MonoBehaviour:
   m_Name: Output
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Float
@@ -512,15 +420,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de03bdfc59265fe45ac36abd01b51a31, type: 3}
   m_Name: Flow Node
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
-  nodeKnobs: []
-  Inputs: []
-  Outputs: []
+  position: {x: 0, y: 0}
+  dynamicConnectionPorts: []
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  flowIn: {fileID: 0}
+  flowOut: {fileID: 0}
+  inputKnob: {fileID: 0}
+  outputKnob: {fileID: 0}
 --- !u!114 &114183979020481072
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -533,11 +439,6 @@ MonoBehaviour:
   m_Name: Child 1
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 1.0452404
-    g: 0.26517266
-    b: 0.35651913
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Default
@@ -557,11 +458,6 @@ MonoBehaviour:
   m_Name: Flow Out
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 1.0452404
-    g: 0.26517266
-    b: 0.35651913
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Default
@@ -581,11 +477,6 @@ MonoBehaviour:
   m_Name: Input
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Float
@@ -605,11 +496,6 @@ MonoBehaviour:
   m_Name: Input
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Float
@@ -629,11 +515,6 @@ MonoBehaviour:
   m_Name: Output
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Float
@@ -653,11 +534,6 @@ MonoBehaviour:
   m_Name: Flow In
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 1.0452404
-    g: 0.26517266
-    b: 0.35651913
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Default
@@ -677,11 +553,6 @@ MonoBehaviour:
   m_Name: Output
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Float
@@ -701,11 +572,6 @@ MonoBehaviour:
   m_Name: Child 2
   m_EditorClassIdentifier: 
   body: {fileID: 114126862484380980}
-  color:
-    r: 1
-    g: 0
-    b: 0
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Flow
@@ -726,11 +592,6 @@ MonoBehaviour:
   m_Name: Flow In
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 1.0452404
-    g: 0.26517266
-    b: 0.35651913
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Default
@@ -750,11 +611,6 @@ MonoBehaviour:
   m_Name: Flow Out
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 1.0452404
-    g: 0.26517266
-    b: 0.35651913
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Default
@@ -774,11 +630,6 @@ MonoBehaviour:
   m_Name: Flow In
   m_EditorClassIdentifier: 
   body: {fileID: 114533019071118712}
-  color:
-    r: 1
-    g: 0
-    b: 0
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Flow
@@ -799,11 +650,6 @@ MonoBehaviour:
   m_Name: Flow Out
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 1.0452404
-    g: 0.26517266
-    b: 0.35651913
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Default
@@ -824,11 +670,6 @@ MonoBehaviour:
   m_Name: Flow In
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 1.0452404
-    g: 0.26517266
-    b: 0.35651913
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Default
@@ -847,15 +688,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3dd50b389073b148b5ec10e419dc073, type: 3}
   m_Name: Input Node
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
-  nodeKnobs: []
-  Inputs: []
-  Outputs: []
+  position: {x: 0, y: 0}
+  dynamicConnectionPorts: []
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  outputKnob: {fileID: 0}
   value: 1
 --- !u!114 &114314781303630022
 MonoBehaviour:
@@ -869,11 +705,6 @@ MonoBehaviour:
   m_Name: Input
   m_EditorClassIdentifier: 
   body: {fileID: 114157133617813144}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Float
@@ -894,7 +725,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
   parentEditor: {fileID: 0}
-  drawing: 1
   selectedNode: {fileID: 0}
   panOffset: {x: -563, y: -171}
   zoom: 1
@@ -910,11 +740,6 @@ MonoBehaviour:
   m_Name: Flow Out
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 1.0452404
-    g: 0.26517266
-    b: 0.35651913
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Default
@@ -934,11 +759,6 @@ MonoBehaviour:
   m_Name: Child 2
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 1.0452404
-    g: 0.26517266
-    b: 0.35651913
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Default
@@ -959,11 +779,6 @@ MonoBehaviour:
   m_Name: Output
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Float
@@ -983,11 +798,6 @@ MonoBehaviour:
   m_Name: Value
   m_EditorClassIdentifier: 
   body: {fileID: 114305445252387422}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Float
@@ -1008,11 +818,6 @@ MonoBehaviour:
   m_Name: Input 1
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Float
@@ -1032,11 +837,6 @@ MonoBehaviour:
   m_Name: Output
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Float
@@ -1056,11 +856,6 @@ MonoBehaviour:
   m_Name: Input
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Float
@@ -1080,11 +875,6 @@ MonoBehaviour:
   m_Name: Output
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Float
@@ -1104,11 +894,6 @@ MonoBehaviour:
   m_Name: Input
   m_EditorClassIdentifier: 
   body: {fileID: 114533019071118712}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Float
@@ -1128,11 +913,6 @@ MonoBehaviour:
   m_Name: Flow In
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 1.0452404
-    g: 0.26517266
-    b: 0.35651913
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Default
@@ -1152,11 +932,6 @@ MonoBehaviour:
   m_Name: Value
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Float
@@ -1176,11 +951,6 @@ MonoBehaviour:
   m_Name: Flow Out
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 1.0452404
-    g: 0.26517266
-    b: 0.35651913
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Default
@@ -1199,15 +969,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de03bdfc59265fe45ac36abd01b51a31, type: 3}
   m_Name: Flow Node
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
-  nodeKnobs: []
-  Inputs: []
-  Outputs: []
+  position: {x: 0, y: 0}
+  dynamicConnectionPorts: []
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  flowIn: {fileID: 0}
+  flowOut: {fileID: 0}
+  inputKnob: {fileID: 0}
+  outputKnob: {fileID: 0}
 --- !u!114 &114554549789057160
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1220,11 +988,6 @@ MonoBehaviour:
   m_Name: Output
   m_EditorClassIdentifier: 
   body: {fileID: 114752074246807786}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Float
@@ -1245,11 +1008,6 @@ MonoBehaviour:
   m_Name: Output
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Float
@@ -1269,11 +1027,6 @@ MonoBehaviour:
   m_Name: Flow Out
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 1.0452404
-    g: 0.26517266
-    b: 0.35651913
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Default
@@ -1294,11 +1047,6 @@ MonoBehaviour:
   m_Name: Flow Out
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 1.0452404
-    g: 0.26517266
-    b: 0.35651913
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Default
@@ -1318,11 +1066,6 @@ MonoBehaviour:
   m_Name: Flow Out
   m_EditorClassIdentifier: 
   body: {fileID: 114157133617813144}
-  color:
-    r: 1
-    g: 0
-    b: 0
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Flow
@@ -1342,11 +1085,6 @@ MonoBehaviour:
   m_Name: Flow In
   m_EditorClassIdentifier: 
   body: {fileID: 114181876052935640}
-  color:
-    r: 1
-    g: 0
-    b: 0
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Flow
@@ -1367,11 +1105,6 @@ MonoBehaviour:
   m_Name: Value
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Float
@@ -1391,11 +1124,6 @@ MonoBehaviour:
   m_Name: Child 1
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 1.0452404
-    g: 0.26517266
-    b: 0.35651913
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Default
@@ -1416,11 +1144,6 @@ MonoBehaviour:
   m_Name: Input
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Float
@@ -1440,11 +1163,6 @@ MonoBehaviour:
   m_Name: Input
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Float
@@ -1464,11 +1182,6 @@ MonoBehaviour:
   m_Name: Value
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Float
@@ -1489,11 +1202,6 @@ MonoBehaviour:
   m_Name: Output
   m_EditorClassIdentifier: 
   body: {fileID: 114036459692221440}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Float
@@ -1514,11 +1222,6 @@ MonoBehaviour:
   m_Name: Flow In
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 1.0452404
-    g: 0.26517266
-    b: 0.35651913
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Default
@@ -1539,11 +1242,6 @@ MonoBehaviour:
   m_Name: Input
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Float
@@ -1563,11 +1261,6 @@ MonoBehaviour:
   m_Name: Flow In
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 1.0452404
-    g: 0.26517266
-    b: 0.35651913
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Default
@@ -1587,11 +1280,6 @@ MonoBehaviour:
   m_Name: Child 1
   m_EditorClassIdentifier: 
   body: {fileID: 114126862484380980}
-  color:
-    r: 1
-    g: 0
-    b: 0
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Flow
@@ -1612,11 +1300,6 @@ MonoBehaviour:
   m_Name: Output
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Float
@@ -1636,16 +1319,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39f5df92d12f07d45a4fcfb96e1b36d8, type: 3}
   m_Name: Display Node
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
-  nodeKnobs: []
-  Inputs: []
-  Outputs: []
-  assigned: 0
+  position: {x: 0, y: 0}
+  dynamicConnectionPorts: []
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  inputKnob: {fileID: 0}
 --- !u!114 &114724789860068786
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1658,11 +1335,6 @@ MonoBehaviour:
   m_Name: Output
   m_EditorClassIdentifier: 
   body: {fileID: 114157133617813144}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Float
@@ -1682,11 +1354,6 @@ MonoBehaviour:
   m_Name: Input 2
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Float
@@ -1705,15 +1372,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de03bdfc59265fe45ac36abd01b51a31, type: 3}
   m_Name: Flow Node
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
-  nodeKnobs: []
-  Inputs: []
-  Outputs: []
+  position: {x: 0, y: 0}
+  dynamicConnectionPorts: []
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  flowIn: {fileID: 0}
+  flowOut: {fileID: 0}
+  inputKnob: {fileID: 0}
+  outputKnob: {fileID: 0}
 --- !u!114 &114780665740918660
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1726,11 +1391,6 @@ MonoBehaviour:
   m_Name: Value
   m_EditorClassIdentifier: 
   body: {fileID: 114706005002301890}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Float
@@ -1751,11 +1411,6 @@ MonoBehaviour:
   m_Name: Flow In
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 1.0452404
-    g: 0.26517266
-    b: 0.35651913
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Default
@@ -1776,11 +1431,6 @@ MonoBehaviour:
   m_Name: Input
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Float
@@ -1801,11 +1451,6 @@ MonoBehaviour:
   m_Name: Flow In
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 1.0452404
-    g: 0.26517266
-    b: 0.35651913
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Default
@@ -1826,11 +1471,6 @@ MonoBehaviour:
   m_Name: Flow In
   m_EditorClassIdentifier: 
   body: {fileID: 114752074246807786}
-  color:
-    r: 1
-    g: 0
-    b: 0
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Flow
@@ -1851,11 +1491,6 @@ MonoBehaviour:
   m_Name: Output
   m_EditorClassIdentifier: 
   body: {fileID: 114533019071118712}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Float
@@ -1875,11 +1510,6 @@ MonoBehaviour:
   m_Name: Flow Out
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 1.0452404
-    g: 0.26517266
-    b: 0.35651913
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Default
@@ -1899,11 +1529,6 @@ MonoBehaviour:
   m_Name: Flow Out
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 1.0452404
-    g: 0.26517266
-    b: 0.35651913
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Default
@@ -1923,11 +1548,6 @@ MonoBehaviour:
   m_Name: Output
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Float
@@ -1948,11 +1568,6 @@ MonoBehaviour:
   m_Name: Input
   m_EditorClassIdentifier: 
   body: {fileID: 114752074246807786}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Float
@@ -1973,11 +1588,6 @@ MonoBehaviour:
   m_Name: Flow In
   m_EditorClassIdentifier: 
   body: {fileID: 114036459692221440}
-  color:
-    r: 1
-    g: 0
-    b: 0
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Flow
@@ -1998,11 +1608,6 @@ MonoBehaviour:
   m_Name: Input
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Float
@@ -2023,11 +1628,6 @@ MonoBehaviour:
   m_Name: Flow In
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 1.0452404
-    g: 0.26517266
-    b: 0.35651913
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Default
@@ -2047,11 +1647,6 @@ MonoBehaviour:
   m_Name: Child 3
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 1.0452404
-    g: 0.26517266
-    b: 0.35651913
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Default
@@ -2071,11 +1666,6 @@ MonoBehaviour:
   m_Name: Output
   m_EditorClassIdentifier: 
   body: {fileID: 114181876052935640}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Float
@@ -2095,11 +1685,6 @@ MonoBehaviour:
   m_Name: Flow Out
   m_EditorClassIdentifier: 
   body: {fileID: 114181876052935640}
-  color:
-    r: 1
-    g: 0
-    b: 0
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Flow
@@ -2120,11 +1705,6 @@ MonoBehaviour:
   m_Name: Flow Out
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 1.0452404
-    g: 0.26517266
-    b: 0.35651913
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Default
@@ -2145,11 +1725,6 @@ MonoBehaviour:
   m_Name: Input
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 1
   maxConnectionCount: 0
   styleID: Float
@@ -2169,11 +1744,6 @@ MonoBehaviour:
   m_Name: Child 3
   m_EditorClassIdentifier: 
   body: {fileID: 114126862484380980}
-  color:
-    r: 1
-    g: 0
-    b: 0
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Flow
@@ -2193,11 +1763,6 @@ MonoBehaviour:
   m_Name: Value
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
   direction: 2
   maxConnectionCount: 1
   styleID: Float

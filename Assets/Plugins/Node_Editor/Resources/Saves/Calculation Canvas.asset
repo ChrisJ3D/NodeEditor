@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Name: Calculation Canvas
   m_EditorClassIdentifier: 
   editorStates:
-  - {fileID: 114823056558934306}
-  saveName: Calculation Canvas New
-  savePath: Assets/Plugins/Node_Editor/Resources/Saves/Calculation Canvas New.asset
+  - {fileID: 114855715037739344}
+  saveName: Calculation Canvas
+  savePath: Assets/Plugins/Node_Editor/Resources/Saves/Calculation Canvas.asset
   livesInScene: 0
   nodes:
-  - {fileID: 114969634015446444}
-  - {fileID: 114338816826535410}
-  - {fileID: 114621459629462806}
-  - {fileID: 114179892776421984}
-  - {fileID: 114624215235555288}
-  - {fileID: 114114215092059524}
-  - {fileID: 114032663330740434}
+  - {fileID: 114172979458617144}
+  - {fileID: 114554734409782870}
+  - {fileID: 114867150667369968}
+  - {fileID: 114987808702259450}
+  - {fileID: 114942311641494604}
+  - {fileID: 114038889823954820}
+  - {fileID: 114581120861427542}
   groups: []
 --- !u!114 &114031747568681056
 MonoBehaviour:
@@ -36,12 +36,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
   m_Name: Output
   m_EditorClassIdentifier: 
-  body: {fileID: 114621459629462806}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
+  body: {fileID: 0}
   direction: 2
   maxConnectionCount: 1
   styleID: Float
@@ -51,7 +46,7 @@ MonoBehaviour:
   side: 2
   sidePosition: 28
   sideOffset: 0
---- !u!114 &114032663330740434
+--- !u!114 &114038889823954820
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -62,16 +57,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3dd50b389073b148b5ec10e419dc073, type: 3}
   m_Name: Input Node
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
-  nodeKnobs: []
-  Inputs: []
-  Outputs: []
-  value: 5
+  position: {x: -389, y: -72}
+  dynamicConnectionPorts: []
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  outputKnob: {fileID: 114569183008971464}
+  value: 73
 --- !u!114 &114069807724388282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -83,12 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
   m_Name: Value
   m_EditorClassIdentifier: 
-  body: {fileID: 114969634015446444}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
+  body: {fileID: 0}
   direction: 2
   maxConnectionCount: 1
   styleID: Float
@@ -108,12 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
   m_Name: Output
   m_EditorClassIdentifier: 
-  body: {fileID: 114624215235555288}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
+  body: {fileID: 0}
   direction: 2
   maxConnectionCount: 1
   styleID: Float
@@ -133,12 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
   m_Name: Input 2
   m_EditorClassIdentifier: 
-  body: {fileID: 114624215235555288}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
+  body: {fileID: 0}
   direction: 1
   maxConnectionCount: 0
   styleID: Float
@@ -147,7 +122,7 @@ MonoBehaviour:
   side: 4
   sidePosition: 46
   sideOffset: 0
---- !u!114 &114114215092059524
+--- !u!114 &114107946085841766
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -155,19 +130,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39f5df92d12f07d45a4fcfb96e1b36d8, type: 3}
-  m_Name: Display Node
+  m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
+  m_Name: Output
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
-  nodeKnobs: []
-  Inputs: []
-  Outputs: []
-  assigned: 0
+  body: {fileID: 114942311641494604}
+  direction: 2
+  maxConnectionCount: 1
+  styleID: Float
+  _connections:
+  - {fileID: 114298126472276922}
+  side: 2
+  sidePosition: 28
+  sideOffset: 0
 --- !u!114 &114117720801931582
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -179,12 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
   m_Name: Value
   m_EditorClassIdentifier: 
-  body: {fileID: 114032663330740434}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
+  body: {fileID: 0}
   direction: 2
   maxConnectionCount: 1
   styleID: Float
@@ -204,12 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
   m_Name: Value
   m_EditorClassIdentifier: 
-  body: {fileID: 114338816826535410}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
+  body: {fileID: 0}
   direction: 2
   maxConnectionCount: 1
   styleID: Float
@@ -218,7 +182,7 @@ MonoBehaviour:
   side: 2
   sidePosition: 28
   sideOffset: 0
---- !u!114 &114179892776421984
+--- !u!114 &114172979458617144
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -226,19 +190,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39f5df92d12f07d45a4fcfb96e1b36d8, type: 3}
-  m_Name: Display Node
+  m_Script: {fileID: 11500000, guid: 27a65ad2b155f0d40838ed81292e4df7, type: 3}
+  m_Name: Calc Node
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
-  nodeKnobs: []
-  Inputs: []
-  Outputs: []
-  assigned: 0
+  position: {x: -65, y: -71}
+  dynamicConnectionPorts: []
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  type: 3
+  input1Knob: {fileID: 114267600261081322}
+  input2Knob: {fileID: 114175583678022802}
+  outputKnob: {fileID: 114337316933341304}
+  Input1Val: 73
+  Input2Val: 3
+--- !u!114 &114175583678022802
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
+  m_Name: Input 2
+  m_EditorClassIdentifier: 
+  body: {fileID: 114172979458617144}
+  direction: 1
+  maxConnectionCount: 0
+  styleID: Float
+  _connections:
+  - {fileID: 114399933113439134}
+  side: 4
+  sidePosition: 46
+  sideOffset: 0
 --- !u!114 &114195451148122272
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -250,12 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
   m_Name: Value
   m_EditorClassIdentifier: 
-  body: {fileID: 114114215092059524}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
+  body: {fileID: 0}
   direction: 1
   maxConnectionCount: 0
   styleID: Float
@@ -275,12 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
   m_Name: Input 1
   m_EditorClassIdentifier: 
-  body: {fileID: 114624215235555288}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
+  body: {fileID: 0}
   direction: 1
   maxConnectionCount: 0
   styleID: Float
@@ -289,7 +262,7 @@ MonoBehaviour:
   side: 4
   sidePosition: 28
   sideOffset: 0
---- !u!114 &114338816826535410
+--- !u!114 &114267600261081322
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -297,19 +270,59 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3dd50b389073b148b5ec10e419dc073, type: 3}
-  m_Name: Input Node
+  m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
+  m_Name: Input 1
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
-  nodeKnobs: []
-  Inputs: []
-  Outputs: []
-  value: 3
+  body: {fileID: 114172979458617144}
+  direction: 1
+  maxConnectionCount: 0
+  styleID: Float
+  _connections:
+  - {fileID: 114569183008971464}
+  side: 4
+  sidePosition: 28
+  sideOffset: 0
+--- !u!114 &114298126472276922
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
+  m_Name: Value
+  m_EditorClassIdentifier: 
+  body: {fileID: 114987808702259450}
+  direction: 1
+  maxConnectionCount: 0
+  styleID: Float
+  _connections:
+  - {fileID: 114107946085841766}
+  side: 4
+  sidePosition: 28
+  sideOffset: 0
+--- !u!114 &114337316933341304
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
+  m_Name: Output
+  m_EditorClassIdentifier: 
+  body: {fileID: 114172979458617144}
+  direction: 2
+  maxConnectionCount: 1
+  styleID: Float
+  _connections:
+  - {fileID: 114862036477819592}
+  - {fileID: 114424974020903678}
+  side: 2
+  sidePosition: 28
+  sideOffset: 0
 --- !u!114 &114391001434538984
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -321,12 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
   m_Name: Value
   m_EditorClassIdentifier: 
-  body: {fileID: 114179892776421984}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
+  body: {fileID: 0}
   direction: 1
   maxConnectionCount: 0
   styleID: Float
@@ -335,7 +343,7 @@ MonoBehaviour:
   side: 4
   sidePosition: 28
   sideOffset: 0
---- !u!114 &114621459629462806
+--- !u!114 &114399933113439134
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -343,22 +351,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27a65ad2b155f0d40838ed81292e4df7, type: 3}
-  m_Name: Calc Node
+  m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
+  m_Name: Value
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
-  nodeKnobs: []
-  Inputs: []
-  Outputs: []
-  type: 3
-  Input1Val: 73
-  Input2Val: 3
---- !u!114 &114624215235555288
+  body: {fileID: 114581120861427542}
+  direction: 2
+  maxConnectionCount: 1
+  styleID: Float
+  _connections:
+  - {fileID: 114175583678022802}
+  side: 2
+  sidePosition: 28
+  sideOffset: 0
+--- !u!114 &114424974020903678
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -366,21 +371,110 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27a65ad2b155f0d40838ed81292e4df7, type: 3}
-  m_Name: Calc Node
+  m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
+  m_Name: Value
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
-  nodeKnobs: []
-  Inputs: []
-  Outputs: []
-  type: 2
-  Input1Val: 24.333334
-  Input2Val: 5
+  body: {fileID: 114867150667369968}
+  direction: 1
+  maxConnectionCount: 0
+  styleID: Float
+  _connections:
+  - {fileID: 114337316933341304}
+  side: 4
+  sidePosition: 28
+  sideOffset: 0
+--- !u!114 &114437583990636284
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
+  m_Name: Value
+  m_EditorClassIdentifier: 
+  body: {fileID: 114554734409782870}
+  direction: 2
+  maxConnectionCount: 1
+  styleID: Float
+  _connections:
+  - {fileID: 114679912549049554}
+  side: 2
+  sidePosition: 28
+  sideOffset: 0
+--- !u!114 &114554734409782870
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3dd50b389073b148b5ec10e419dc073, type: 3}
+  m_Name: Input Node
+  m_EditorClassIdentifier: 
+  position: {x: -65, y: 51}
+  dynamicConnectionPorts: []
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  outputKnob: {fileID: 114437583990636284}
+  value: 5
+--- !u!114 &114569183008971464
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
+  m_Name: Value
+  m_EditorClassIdentifier: 
+  body: {fileID: 114038889823954820}
+  direction: 2
+  maxConnectionCount: 1
+  styleID: Float
+  _connections:
+  - {fileID: 114267600261081322}
+  side: 2
+  sidePosition: 28
+  sideOffset: 0
+--- !u!114 &114581120861427542
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3dd50b389073b148b5ec10e419dc073, type: 3}
+  m_Name: Input Node
+  m_EditorClassIdentifier: 
+  position: {x: -390, y: 3}
+  dynamicConnectionPorts: []
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  outputKnob: {fileID: 114399933113439134}
+  value: 3
+--- !u!114 &114679912549049554
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
+  m_Name: Input 2
+  m_EditorClassIdentifier: 
+  body: {fileID: 114942311641494604}
+  direction: 1
+  maxConnectionCount: 0
+  styleID: Float
+  _connections:
+  - {fileID: 114437583990636284}
+  side: 4
+  sidePosition: 46
+  sideOffset: 0
 --- !u!114 &114705503879115268
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -392,12 +486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
   m_Name: Input 2
   m_EditorClassIdentifier: 
-  body: {fileID: 114621459629462806}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
+  body: {fileID: 0}
   direction: 1
   maxConnectionCount: 0
   styleID: Float
@@ -406,7 +495,7 @@ MonoBehaviour:
   side: 4
   sidePosition: 46
   sideOffset: 0
---- !u!114 &114823056558934306
+--- !u!114 &114855715037739344
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -419,10 +508,64 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
   parentEditor: {fileID: 0}
-  drawing: 1
   selectedNode: {fileID: 0}
   panOffset: {x: -146, y: 6}
   zoom: 1
+--- !u!114 &114862036477819592
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
+  m_Name: Input 1
+  m_EditorClassIdentifier: 
+  body: {fileID: 114942311641494604}
+  direction: 1
+  maxConnectionCount: 0
+  styleID: Float
+  _connections:
+  - {fileID: 114337316933341304}
+  side: 4
+  sidePosition: 28
+  sideOffset: 0
+--- !u!114 &114867150667369968
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39f5df92d12f07d45a4fcfb96e1b36d8, type: 3}
+  m_Name: Display Node
+  m_EditorClassIdentifier: 
+  position: {x: 514, y: -70}
+  dynamicConnectionPorts: []
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  inputKnob: {fileID: 114424974020903678}
+--- !u!114 &114942311641494604
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27a65ad2b155f0d40838ed81292e4df7, type: 3}
+  m_Name: Calc Node
+  m_EditorClassIdentifier: 
+  position: {x: 233, y: -7}
+  dynamicConnectionPorts: []
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  type: 2
+  input1Knob: {fileID: 114862036477819592}
+  input2Knob: {fileID: 114679912549049554}
+  outputKnob: {fileID: 114107946085841766}
+  Input1Val: 24.333334
+  Input2Val: 5
 --- !u!114 &114954652997668696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -434,12 +577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017e2c7fd038ecb46b317c1e003f31dc, type: 3}
   m_Name: Input 1
   m_EditorClassIdentifier: 
-  body: {fileID: 114621459629462806}
-  color:
-    r: 0
-    g: 1
-    b: 1
-    a: 1
+  body: {fileID: 0}
   direction: 1
   maxConnectionCount: 0
   styleID: Float
@@ -448,7 +586,7 @@ MonoBehaviour:
   side: 4
   sidePosition: 28
   sideOffset: 0
---- !u!114 &114969634015446444
+--- !u!114 &114987808702259450
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -456,16 +594,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3dd50b389073b148b5ec10e419dc073, type: 3}
-  m_Name: Input Node
+  m_Script: {fileID: 11500000, guid: 39f5df92d12f07d45a4fcfb96e1b36d8, type: 3}
+  m_Name: Display Node
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
-  nodeKnobs: []
-  Inputs: []
-  Outputs: []
-  value: 73
+  position: {x: 514, y: -7}
+  dynamicConnectionPorts: []
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  inputKnob: {fileID: 114298126472276922}
