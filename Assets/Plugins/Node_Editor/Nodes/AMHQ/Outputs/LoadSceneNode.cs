@@ -13,30 +13,22 @@ namespace NodeEditorFramework.Standard
 	{
 		public const string ID = "LoadSceneNode";
 		public override string GetID { get { return ID; } }
+		public override string Title { get { return "Load Scene"; } }
+		public override Vector2 DefaultSize { get { return new Vector2 (130, 100); } }
+
+		[ConnectionKnob("Flow In", Direction.In, "Flow", NodeSide.Left, 10)]
+		public ConnectionKnob flowIn;
 
 		public Example scene;
 		
-		public override Node Create (Vector2 pos) 
+		public override void NodeGUI () 
 		{
-			LoadSceneNode node = CreateInstance<LoadSceneNode> ();
-			
-			node.rect = new Rect (pos.x, pos.y, 130, 100);
-			node.name = "Load Scene";
+			GUILayout.BeginHorizontal();
 
-			// Flow connections
-			node.CreateInput ("Flow", "Flow", NodeSide.Left, 10);
+			flowIn.DisplayLayout();
 
-			return node;
-		}
-		
-		protected internal override void NodeGUI () 
-		{
-			// Display Connections
-			// Start counter at 1 to ignore flow connections
-			for (int inCnt = 1; inCnt < Inputs.Count; inCnt++)
-				Inputs[inCnt].DisplayLayout ();
+			GUILayout.EndHorizontal();
 
-			GUILayout.Space(10f);
 			GUILayout.Label("Scene");
 			scene = (Example)UnityEditor.EditorGUILayout.EnumPopup (scene);
 		}

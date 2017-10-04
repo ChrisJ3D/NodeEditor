@@ -11,59 +11,45 @@ namespace NodeEditorFramework.Standard
 		public const string ID = "NormalizeNode";
 		public override string GetID { get { return ID; } }
 
+		public override string Title { get { return "Normalize"; } }
+		public override Vector2 DefaultSize { get { return new Vector2 (150, 50); } }
+
+		[ValueConnectionKnob("Vector", Direction.In, "Number")]
+		public ValueConnectionKnob inputKnob;
+		[ValueConnectionKnob("Normalized", Direction.Out, "Number")]
+		public ValueConnectionKnob outputKnob;
+
 		public Number normalizedVector = new Number();
 		protected string label = "";
 		
-		public override Node Create (Vector2 pos) 
-		{
-			NormalizeNode node = CreateInstance<NormalizeNode> ();
-			
-			node.rect = new Rect (pos.x, pos.y, 150, 50);
-			node.name = "Normalize";
-			
-			node.CreateInput ("Vector", "Number");
-			node.CreateOutput ("Normalized", "Number");
-			
-			return node;
-		}
-		
-		protected internal override void NodeGUI () 
+		public override void NodeGUI () 
 		{
 			GUILayout.Space(5f);
 
 			GUILayout.BeginHorizontal ();
 			GUILayout.BeginVertical ();
 
-			Inputs [0].DisplayLayout ();
+			inputKnob.DisplayLayout ();
 
 			GUILayout.EndVertical ();
 			GUILayout.BeginVertical ();
 			
-			Outputs [0].DisplayLayout (new GUIContent(label));
+			outputKnob.DisplayLayout (new GUIContent(label));
 			
 			GUILayout.EndVertical ();
 			GUILayout.EndHorizontal ();
-
-			if(GUI.changed) {
-				NodeEditor.RecalculateFrom(this);
-			}
 		}
 		
 		public override bool Calculate () 
 		{
-			if (!allInputsReady ()) {
-				label = "";
-				return false;
-			}
-
-			if (Inputs[0].connection != null) {
+			if (inputKnob.connected()) {
 				float length = 0.0f;
-				Number v = Inputs [0].connection.GetValue<Number>();
+				Number v = inputKnob.GetValue<Number>();
 				length =  Mathf.Sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z) + (v.w * v.w));
-				Outputs[0].SetValue<Number> (v / length);
+				outputKnob.SetValue<Number> (v / length);
 			}
 
-			label = Outputs[0].GetValue<Number> ().ToString();
+			label = outputKnob.GetValue<Number> ().ToString();
 
 			return true;
 		}

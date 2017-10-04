@@ -10,28 +10,22 @@ namespace NodeEditorFramework.Standard
 		public const string ID = "multiplyNode";
 		public override string GetID { get { return ID; } }
 
+		public override string Title { get { return "Multiply"; } }
+		public override Vector2 DefaultSize { get { return new Vector2 (150, 70); } }
+
+		[ValueConnectionKnob("Factor 1", Direction.In, "Number")]
+		public ValueConnectionKnob aKnob;
+		[ValueConnectionKnob("Factor 2", Direction.In, "Number")]
+		public ValueConnectionKnob bKnob;
+		[ValueConnectionKnob("Product", Direction.Out, "Number")]
+		public ValueConnectionKnob outputKnob;
+
 		public Number factor1 = 0f;
 		public Number factor2 = 0f;
 		protected string label = "";
 		
-		public override Node Create (Vector2 pos) 
+		public override void NodeGUI () 
 		{
-			MultiplyNode node = CreateInstance<MultiplyNode> ();
-			
-			node.rect = new Rect (pos.x, pos.y, 150, 70);
-			node.name = "Multiply";
-			
-			node.CreateInput ("Factor 1", "Number");
-			node.CreateInput ("Factor 2", "Number");
-			node.CreateOutput ("Product", "Number");
-			
-			return node;
-		}
-		
-		protected internal override void NodeGUI () 
-		{
-			//	GUILayout.Label (label);
-
 			GUILayout.Space(5f);
 
 			GUILayout.BeginHorizontal ();
@@ -40,25 +34,27 @@ namespace NodeEditorFramework.Standard
 			// Inputs [0].DisplayLayout ();
 			// Inputs [1].DisplayLayout();
 
-			if (Inputs [0].connection != null)
-				GUILayout.Label (Inputs [0].name);
+			if (aKnob.connected()) {
+				GUILayout.Label (aKnob.name);
+				aKnob.DisplayLayout();
+			}
 			else
 				factor1 = RTEditorGUI.FloatField (GUIContent.none, factor1);
-			InputKnob (0);
 
 			GUILayout.Space(5f);
 			
 			// --
-			if (Inputs [1].connection != null)
-				GUILayout.Label (Inputs [1].name);
+			if (bKnob.connected()) {
+				GUILayout.Label (bKnob.name);
+				bKnob.DisplayLayout();
+			}
 			else
 				factor2 = RTEditorGUI.FloatField (GUIContent.none, factor2);
-			InputKnob (1);
 
 			GUILayout.EndVertical ();
 			GUILayout.BeginVertical ();
 			
-			Outputs [0].DisplayLayout ();
+			outputKnob.DisplayLayout ();
 			
 			GUILayout.EndVertical ();
 			GUILayout.EndHorizontal ();
@@ -67,15 +63,12 @@ namespace NodeEditorFramework.Standard
 		
 		public override bool Calculate () 
 		{
-			if (!allInputsReady ())
-				return false;
+			if (aKnob.connected())
+				factor1 = aKnob.GetValue<Number> ();
+			if (bKnob.connected())
+				factor2 = bKnob.GetValue<Number> ();
 
-			if (Inputs[0].connection != null)
-				factor1 = Inputs[0].connection.GetValue<Number> ();
-			if (Inputs[1].connection != null)
-				factor2 = Inputs[1].connection.GetValue<Number> ();
-
-			Outputs[0].SetValue<Number> (factor1 * factor2);
+			outputKnob.SetValue<Number> (factor1 * factor2);
 
 			return true;
 		}

@@ -9,70 +9,60 @@ namespace NodeEditorFramework.Standard
 	{
 		public const string ID = "moduloNode";
 		public override string GetID { get { return ID; } }
+		public override string Title { get { return "Modulo"; } }
+		public override Vector2 DefaultSize { get { return new Vector2 (150, 70); } }
+
+		[ValueConnectionKnob("Dividend", Direction.In, "Number")]
+		public ValueConnectionKnob dividendKnob;
+		[ValueConnectionKnob("Mod Divisior", Direction.In, "Number")]
+		public ValueConnectionKnob modDivisorKnob;
+		[ValueConnectionKnob("Remainer", Direction.Out, "Number")]
+		public ValueConnectionKnob remainderKnob;
 
 		public Number dividend = new Number();
 		public Number modDivisor = new Number();
 		protected string label = "";
 		
-		public override Node Create (Vector2 pos) 
-		{
-			ModuloNode node = CreateInstance<ModuloNode> ();
-			
-			node.rect = new Rect (pos.x, pos.y, 150, 70);
-			node.name = "Modulo";
-			
-			node.CreateInput ("Dividend", "Number");
-			node.CreateInput ("modDivisor", "Number");
-			node.CreateOutput ("Remainder", "Number");
-
-			return node;
-		}
-		
-		protected internal override void NodeGUI () 
+		public override void NodeGUI () 
 		{
 			GUILayout.Space(5f);
 
 			GUILayout.BeginHorizontal ();
 			GUILayout.BeginVertical ();
 
-			if (Inputs [0].connection != null)
-				Inputs [0].DisplayLayout ();
+			if (dividendKnob.connected())
+				dividendKnob.DisplayLayout ();
 			else
 				dividend = RTEditorGUI.FloatField (GUIContent.none, dividend);
 
 			GUILayout.Space(5f);
 			
 			// --
-			if (Inputs [1].connection != null)
-				Inputs [1].DisplayLayout ();
+			if (modDivisorKnob.connected())
+				modDivisorKnob.DisplayLayout ();
 			else
 				modDivisor = RTEditorGUI.FloatField (GUIContent.none, modDivisor);
 
 			GUILayout.EndVertical ();
 			GUILayout.BeginVertical ();
 			
-			Outputs [0].DisplayLayout (new GUIContent(label));
+			remainderKnob.DisplayLayout (new GUIContent(label));
 			
 			GUILayout.EndVertical ();
 			GUILayout.EndHorizontal ();
-			
-			if(GUI.changed) {
-				NodeEditor.RecalculateFrom(this);
-			}
 		}
 		
 		public override bool Calculate () 
 		{
+			if (dividendKnob.connected())
+				dividend = dividendKnob.GetValue<Number> ();
 
-			if (Inputs[0].connection != null)
-				dividend = Inputs[0].connection.GetValue<Number> ();
+			if (modDivisorKnob.connected())
+				modDivisor = modDivisorKnob.GetValue<Number> ();
 
-			if (Inputs[1].connection != null)
-				modDivisor = Inputs[1].connection.GetValue<Number> ();
+			remainderKnob.SetValue<Number> (dividend % modDivisor);
 
-			Outputs[0].SetValue<Number> (dividend % modDivisor);
-
-			label = Outputs[0].GetValue<Number> ().ToString();
+			label = remainderKnob.GetValue<Number> ().ToString();
 
 			return true;
 		}

@@ -12,43 +12,40 @@ namespace NodeEditorFramework.Standard
 	{
 		public const string ID = "BranchNode";
 		public override string GetID { get { return ID; } }
+		public override string Title { get { return "Branch"; } }
+		public override Vector2 DefaultSize { get { return new Vector2 (150, 70); } }
+
+		[ConnectionKnob("Flow In", Direction.In, "Flow", NodeSide.Left, 10)]
+		public ConnectionKnob flowIn;
+
+		[ConnectionKnob("Flow In", Direction.In, "Number")]
+		public ConnectionKnob conditionKnob;
+
+		[ConnectionKnob("Flow Out", Direction.Out, "Flow")]
+		public ConnectionKnob trueKnob;
+
+		[ConnectionKnob("Flow Out", Direction.Out, "Flow")]
+		public ConnectionKnob falseKnob;		
 
 		public object speaker;
 		public string content = "";
 		
-		public override Node Create (Vector2 pos) 
-		{
-			BranchNode node = CreateInstance<BranchNode> ();
-			
-			node.rect = new Rect (pos.x, pos.y, 150, 70);
-			node.name = "Branch";
-
-			// Flow connections
-			node.CreateInput ("Flow", "Flow");
-			node.CreateInput ("Condition", "Bool");
-			node.CreateOutput ("True", "Flow");
-			node.CreateOutput ("False", "Flow");
-			
-			return node;
-		}
-		
-		protected internal override void NodeGUI () 
+		public override void NodeGUI () 
 		{
 			GUILayout.BeginHorizontal();
 			GUILayout.BeginVertical();
-			// Display Connections
-			// Start counter at 1 to ignore flow connections
-			for (int inCnt = 1; inCnt < Inputs.Count; inCnt++)
-				Inputs[inCnt].DisplayLayout ();
+
+			flowIn.DisplayLayout();
+			conditionKnob.DisplayLayout();
 
 			GUILayout.EndVertical();
 			GUILayout.BeginVertical();
-			for (int outCnt = 1; outCnt < Outputs.Count; outCnt++)
-				Inputs[outCnt].DisplayLayout ();
+			
+			trueKnob.DisplayLayout();
+			falseKnob.DisplayLayout();
 
 			GUILayout.EndVertical();
 			GUILayout.EndHorizontal();
-
 		}
 		
 		public override bool Calculate () 

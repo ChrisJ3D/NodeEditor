@@ -11,35 +11,30 @@ namespace NodeEditorFramework.Standard
 		public const string ID = "LengthNode";
 		public override string GetID { get { return ID; } }
 
+		public override string Title { get { return "Length"; } }
+		public override Vector2 DefaultSize { get { return new Vector2 (150, 50); } }
+
+		[ValueConnectionKnob("Vector", Direction.In, "Number")]
+		public ValueConnectionKnob inputKnob;
+		[ValueConnectionKnob("Output", Direction.Out, "Number")]
+		public ValueConnectionKnob outputKnob;
+
 		public Number length = new Number();
 		protected string label = "";
 		
-		public override Node Create (Vector2 pos) 
-		{
-			LengthNode node = CreateInstance<LengthNode> ();
-			
-			node.rect = new Rect (pos.x, pos.y, 150, 50);
-			node.name = "Length";
-			
-			node.CreateInput ("Vector", "Number");
-			node.CreateOutput ("Length", "Number");
-			
-			return node;
-		}
-		
-		protected internal override void NodeGUI () 
+		public override void NodeGUI () 
 		{
 			GUILayout.Space(5f);
 
 			GUILayout.BeginHorizontal ();
 			GUILayout.BeginVertical ();
 
-			Inputs [0].DisplayLayout ();
+			inputKnob.DisplayLayout ();
 
 			GUILayout.EndVertical ();
 			GUILayout.BeginVertical ();
 			
-			Outputs [0].DisplayLayout (new GUIContent(label));
+			outputKnob.DisplayLayout (new GUIContent(label));
 			
 			GUILayout.EndVertical ();
 			GUILayout.EndHorizontal ();
@@ -48,15 +43,10 @@ namespace NodeEditorFramework.Standard
 		
 		public override bool Calculate () 
 		{
-			if (!allInputsReady ()) {
-				label = "";
-				return false;
-			}
-
-			if (Inputs[0].connection != null) {
-				Number v = Inputs [0].connection.GetValue<Number>();
+			if (inputKnob.connected()) {
+				Number v = inputKnob.GetValue<Number>();
 				length =  Mathf.Sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z) + (v.w * v.w));
-				Outputs[0].SetValue<Number> (length);
+				outputKnob.SetValue<Number> (length);
 			}
 
 			label = length.ToString();

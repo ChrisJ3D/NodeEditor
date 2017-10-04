@@ -12,22 +12,19 @@ namespace NodeEditorFramework.Standard
 		public const string ID = "BoolNode";
 		public override string GetID { get { return ID; } }
 
+		public override string Title { get { return "Boolean"; } }
+		public override Vector2 DefaultSize { get { return new Vector2 (75, 50); } }
+
 		public Number value = new Number();
-		protected string label = "";
+		private string label = "";
+		
+		[ValueConnectionKnob("Input", Direction.In, "Number")]
+		public ValueConnectionKnob inputKnob;
 
-		public override Node Create (Vector2 pos) 
-		{
-			BoolNode node = CreateInstance <BoolNode> ();
+		[ValueConnectionKnob("Output", Direction.Out, "Number")]
+		public ValueConnectionKnob outputKnob;
 
-			node.name = "Boolean";
-			node.rect = new Rect (pos.x, pos.y, 75, 50);;
-
-			NodeOutput.Create (node, "Value", "Number");
-
-			return node;
-		}
-
-		protected internal override void NodeGUI () 
+		public override void NodeGUI () 
 		{			
 			GUILayout.Space(5f);
 
@@ -39,18 +36,15 @@ namespace NodeEditorFramework.Standard
 			GUILayout.EndVertical();
 			GUILayout.BeginVertical();
 
-			Outputs[0].DisplayLayout(new GUIContent(label));
+			outputKnob.DisplayLayout(new GUIContent(label));
 
 			GUILayout.EndVertical();
 			GUILayout.EndHorizontal();
-
-			if (GUI.changed)
-				NodeEditor.RecalculateFrom (this);
 		}
 
 		public override bool Calculate () 
 		{
-			Outputs[0].SetValue<Number> (value);
+			outputKnob.SetValue<Number> (value);
 			label = value.ToBool().ToString();
 			return true;
 		}

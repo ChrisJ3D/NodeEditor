@@ -15,45 +15,41 @@ namespace NodeEditorFramework.Standard
 		public const string ID = "ConditionalNode";
 		public override string GetID { get { return ID; } }
 
+		public override string Title { get { return "Conditional"; } }
+		public override Vector2 DefaultSize { get { return new Vector2 (200, 200); } }
+
 		public float Input1Val = 1f;
 		public float Input2Val = 1f;
 
-		public override Node Create (Vector2 pos) 
-		{
-			ConditionalNode node = CreateInstance <ConditionalNode> ();
-			
-			node.name = "Conditional";
-			node.rect = new Rect (pos.x, pos.y, 200, 200);
-			
-			node.CreateInput ("Input 1", "Float");
-			node.CreateInput ("Input 2", "Float");
+		[ValueConnectionKnob("A", Direction.In, "Number")]
+		public ValueConnectionKnob aKnob;
 
-			node.CreateOutput ("Result", "Bool");
+		[ValueConnectionKnob("B", Direction.In, "Number")]
+		public ValueConnectionKnob bKnob;
 
-			return node;
-		}
+		[ValueConnectionKnob("Output", Direction.Out, "Number")]
+		public ValueConnectionKnob outputKnob;
 
-		protected internal override void NodeGUI () 
+		public override void NodeGUI () 
 		{
 			GUILayout.BeginHorizontal ();
 			GUILayout.BeginVertical ();
 
-			if (Inputs [0].connection != null)
-				GUILayout.Label (Inputs [0].name);
+			if (aKnob.connected())
+				aKnob.DisplayLayout();
 			else
 				Input1Val = RTEditorGUI.FloatField (GUIContent.none, Input1Val);
-			InputKnob (0);
+			
 			// --
-			if (Inputs [1].connection != null)
-				GUILayout.Label (Inputs [1].name);
+			if (bKnob.connected())
+				bKnob.DisplayLayout();
 			else
 				Input2Val = RTEditorGUI.FloatField (GUIContent.none, Input2Val);
-			InputKnob (1);
 
 			GUILayout.EndVertical ();
 			GUILayout.BeginVertical ();
 
-			Outputs [0].DisplayLayout ();
+			outputKnob.DisplayLayout ();
 
 			GUILayout.EndVertical ();
 			GUILayout.EndHorizontal ();
@@ -63,43 +59,40 @@ namespace NodeEditorFramework.Standard
 	#else
 			GUILayout.Label (new GUIContent ("Method: " + type.ToString (), "The type of calculation performed on Input 1 and Input 2"));
 	#endif
-
-			if (GUI.changed)
-				NodeEditor.RecalculateFrom (this);
 		}
 
 		public override bool Calculate () 
 		{
-			if (Inputs[0].connection != null)
-				Input1Val = Inputs[0].connection.GetValue<float> ();
-			if (Inputs[1].connection != null)
-				Input2Val = Inputs[1].connection.GetValue<float> ();
+			if (aKnob.connected())
+				Input1Val = aKnob.GetValue<Number> ();
+			if (bKnob.connected())
+				Input2Val = bKnob.GetValue<Number> ();
 
 			switch (method) 
 			{
 			case ConditionType.LessThan:
-				if (Outputs[0] != null) {
-					Outputs[0].SetValue<bool> ((Input1Val < Input2Val) ? true : false);
+				if (outputKnob != null) {
+					outputKnob.SetValue<Number> ((Input1Val < Input2Val) ? true : false);
 				}
 				break;
 			case ConditionType.LessThanOrEqual:
-				if (Outputs[0] != null) {
-					Outputs[0].SetValue<bool> ((Input1Val <= Input2Val) ? true : false);
+				if (outputKnob != null) {
+					outputKnob.SetValue<Number> ((Input1Val <= Input2Val) ? true : false);
 				}
 				break;
 			case ConditionType.Equal:
-				if (Outputs[0] != null) {
-					Outputs[0].SetValue<bool> ((Input1Val == Input2Val) ? true : false);
+				if (outputKnob != null) {
+					outputKnob.SetValue<Number> ((Input1Val == Input2Val) ? true : false);
 				}
 				break;
 			case ConditionType.GreaterThanOrEqual:
-				if (Outputs[0] != null) {
-					Outputs[0].SetValue<bool> ((Input1Val >= Input2Val) ? true : false);
+				if (outputKnob != null) {
+					outputKnob.SetValue<Number> ((Input1Val >= Input2Val) ? true : false);
 				}
 				break;
 			case ConditionType.Greater:
-				if (Outputs[0] != null) {
-					Outputs[0].SetValue<bool> ((Input1Val > Input2Val) ? true : false);
+				if (outputKnob != null) {
+					outputKnob.SetValue<Number> ((Input1Val > Input2Val) ? true : false);
 				}
 				break;
 			}

@@ -11,56 +11,47 @@ namespace NodeEditorFramework.Standard
 		public const string ID = "SquareRootNode";
 		public override string GetID { get { return ID; } }
 
+		public override string Title { get { return "Square Root"; } }
+		public override Vector2 DefaultSize { get { return new Vector2 (150, 50); } }
+
+		[ValueConnectionKnob("Radicand", Direction.In, "Number")]
+		public ValueConnectionKnob aKnob;
+		[ValueConnectionKnob("Root", Direction.Out, "Number")]
+		public ValueConnectionKnob outputKnob;
+
 		public Number radicand = new Number();
 		protected string label = "";
 		
-		public override Node Create (Vector2 pos) 
-		{
-			SquareRootNode node = CreateInstance<SquareRootNode> ();
-			
-			node.rect = new Rect (pos.x, pos.y, 150, 50);
-			node.name = "Square Root";
-			
-			node.CreateInput ("Radicand", "Number");
-			node.CreateOutput ("Root", "Number");
-			
-			return node;
-		}
-		
-		protected internal override void NodeGUI () 
+		public override void NodeGUI () 
 		{
 			GUILayout.Space(5f);
 
 			GUILayout.BeginHorizontal ();
 			GUILayout.BeginVertical ();
 
-			if (Inputs [0].connection != null)
-				Inputs[0].DisplayLayout();
+			if (aKnob.connected())
+				aKnob.DisplayLayout();
 			else
 				radicand = RTEditorGUI.FloatField (GUIContent.none, radicand);
 
 			GUILayout.EndVertical ();
 			GUILayout.BeginVertical ();
 
-			Outputs [0].DisplayLayout (new GUIContent(label));
+			outputKnob.DisplayLayout (new GUIContent(label));
 
 			GUILayout.EndVertical ();
 			GUILayout.EndHorizontal ();
-
-			if(GUI.changed) {
-				NodeEditor.RecalculateFrom(this);
-			}
 		}
 		
 		public override bool Calculate () 
 		{
-			if (Inputs[0].connection != null) {
-				radicand = Inputs[0].connection.GetValue<Number> ();
+			if (aKnob.connected()) {
+				radicand = aKnob.GetValue<Number> ();
 			}
 
-			Outputs[0].SetValue<Number> (Math.Sqrt(radicand));
+			outputKnob.SetValue<Number> (Math.Sqrt(radicand));
 
-			label = Outputs[0].GetValue<Number> ();
+			label = outputKnob.GetValue<Number> ();
 
 			return true;
 		}

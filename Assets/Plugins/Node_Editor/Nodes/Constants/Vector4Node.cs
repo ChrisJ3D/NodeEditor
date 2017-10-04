@@ -11,6 +11,8 @@ namespace NodeEditorFramework.Standard
 	{
 		public const string ID = "Vector4Node";
 		public override string GetID { get { return ID; } }
+		public override string Title { get { return "Vector"; } }
+		public override Vector2 DefaultSize { get { return new Vector2 (200, 100); } }
 
 		public Number value = new Number();
 		protected string label_x = "";
@@ -18,50 +20,48 @@ namespace NodeEditorFramework.Standard
 		protected string label_z = "";
 		protected string label_w = "";
 
-		public override Node Create (Vector2 pos) 
-		{
-			Vector4Node node = CreateInstance <Vector4Node> ();
+		[ValueConnectionKnob("X", Direction.In, "Number")]
+		public ValueConnectionKnob xKnob;
 
-			node.name = "Vector4";
-			node.rect = new Rect (pos.x, pos.y, 200, 100);;
+		[ValueConnectionKnob("Y", Direction.In, "Number")]
+		public ValueConnectionKnob yKnob;
 
-			node.CreateInput ("X", "Number");
-			node.CreateInput ("Y", "Number");
-			node.CreateInput ("Z", "Number");
-			node.CreateInput ("W", "Number");
+		[ValueConnectionKnob("Z", Direction.In, "Number")]
+		public ValueConnectionKnob zKnob;
 
-			NodeOutput.Create (node, "Value", "Number");
+		[ValueConnectionKnob("W", Direction.In, "Number")]
+		public ValueConnectionKnob wKnob;
 
-			return node;
-		}
+		[ValueConnectionKnob("Vector", Direction.Out, "Number")]
+		public ValueConnectionKnob outputKnob;
 
-		protected internal override void NodeGUI () 
+		public override void NodeGUI () 
 		{
 			GUILayout.Space(5f);
 
 			GUILayout.BeginHorizontal ();
 			GUILayout.BeginVertical();
 
-			if (Inputs[0].connection != null) {
-				Inputs[0].DisplayLayout();
+			if (xKnob.connected()) {
+				xKnob.DisplayLayout();
 			} else {
 				value.x = RTEditorGUI.FloatField (GUIContent.none, value.x);
 			}
 
-			if (Inputs[1].connection != null) {
-				Inputs[1].DisplayLayout();
+			if (yKnob.connected()) {
+				yKnob.DisplayLayout();
 			} else {
 				value.y = RTEditorGUI.FloatField (GUIContent.none, value.y);
 			}
 
-			if (Inputs[2].connection != null) {
-				Inputs[2].DisplayLayout();
+			if (zKnob.connected()) {
+				zKnob.DisplayLayout();
 			} else {
 				value.z = RTEditorGUI.FloatField (GUIContent.none, value.z);
 			}
 
-			if (Inputs[3].connection != null) {
-				Inputs[3].DisplayLayout();
+			if (wKnob.connected()) {
+				wKnob.DisplayLayout();
 			} else {
 				value.w = RTEditorGUI.FloatField (GUIContent.none, value.w);
 			}
@@ -69,35 +69,31 @@ namespace NodeEditorFramework.Standard
 			GUILayout.EndVertical ();
 			GUILayout.BeginVertical ();
 			
-			Outputs [0].DisplayLayout (new GUIContent(value.ToString()));
+			outputKnob.DisplayLayout (new GUIContent(value.ToString()));
 			
 			GUILayout.EndVertical ();
 			GUILayout.EndHorizontal ();
-			
-			if(GUI.changed) {
-				NodeEditor.RecalculateFrom(this);
-			}
 		}
 
 		public override bool Calculate () 
 		{
-			if (Inputs[0].connection != null) {
-				value.x = Inputs[0].connection.GetValue<Number>().x;
+			if (xKnob.connected()) {
+				value.x = xKnob.GetValue<Number>().x;
 			}
 
-			if (Inputs[1].connection != null) {
-				value.y = Inputs[1].connection.GetValue<Number>().y;
+			if (yKnob.connected()) {
+				value.y = yKnob.GetValue<Number>().y;
 			}
 
-			if (Inputs[2].connection != null) {
-				value.z = Inputs[2].connection.GetValue<Number>().z;
+			if (zKnob.connected()) {
+				value.z = zKnob.GetValue<Number>().z;
 			}
 
-			if (Inputs[3].connection != null) {
-				value.w = Inputs[3].connection.GetValue<Number>().w;
+			if (wKnob.connected()) {
+				value.w = wKnob.GetValue<Number>().w;
 			}
 
-			Outputs[0].SetValue<Number> (value);
+			outputKnob.SetValue<Number> (value);
 			return true;
 		}
 	}
