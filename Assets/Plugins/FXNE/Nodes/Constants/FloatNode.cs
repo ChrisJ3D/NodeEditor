@@ -20,7 +20,7 @@ namespace NodeEditorFramework.Standard
 		[ValueConnectionKnob("Output", Direction.Out, "Number")]
 		public ValueConnectionKnob outputKnob;		
 
-		public Number value = new Number();
+		public Number value = 0f;
 
 		public override void NodeGUI () 
 		{
@@ -32,7 +32,7 @@ namespace NodeEditorFramework.Standard
 			if (inputKnob.connected()) {
 				inputKnob.DisplayLayout();
 			} else {
-				value = RTEditorGUI.FloatField (value);
+				value.value = RTEditorGUI.FloatField (value);
 			}
 			
 			GUILayout.EndVertical();
@@ -47,7 +47,7 @@ namespace NodeEditorFramework.Standard
 		public override bool Calculate () 
 		{
 			if (inputKnob.connected()) {
-				value = inputKnob.GetValue<Number>();
+				value.value = inputKnob.GetValue<Number>();
 			}
 			
 			outputKnob.SetValue<Number> (value);
